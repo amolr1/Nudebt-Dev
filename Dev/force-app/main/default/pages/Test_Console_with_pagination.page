@@ -1,0 +1,474 @@
+<apex:page standardController="nu_dse__Program__c" recordSetVar="test">
+     <apex:slds />
+    <apex:form id="check">
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                <apex:tabPanel >
+                    <apex:tab label="Details" >
+                        <apex:detail relatedList="false" />
+                    </apex:tab>
+                    <apex:tab label="Group Tasks">
+                        <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered">
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Action">Action</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Subject">Subject</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Due Date">Due Date</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Type">Type</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Description">Description</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Status">Status</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="NDS Created By">NDS Created By</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="NDS Assigned">NDS Assigned</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Owener Name"> Owner Name</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="slds-hint-parent">
+                                    <th data-label="Opportunity Name" scope="row">
+                                        <div class="slds-truncate" title="Cloudhub">
+                                            <a href="javascript:void(0);" tabindex="-1">Cloudhub</a>
+                                        </div>
+                                    </th>
+                                    <td data-label="Account Name">
+                                        <div class="slds-truncate" title="Cloudhub">Cloudhub</div>
+                                    </td>
+                                    <td data-label="Close Date">
+                                        <div class="slds-truncate" title="4/14/2015">4/14/2015</div>
+                                    </td>
+                                    <td data-label="Prospecting">
+                                        <div class="slds-truncate" title="Prospecting">Prospecting</div>
+                                    </td>
+                                    <td data-label="Confidence">
+                                        <div class="slds-truncate" title="20%">20%</div>
+                                    </td>
+                                    <td data-label="Amount">
+                                        <div class="slds-truncate" title="$25k">$25k</div>
+                                    </td>
+                                    <td data-label="Contact">
+                                        <div class="slds-truncate" title="jrogers@cloudhub.com">
+                                            <a href="javascript:void(0);" tabindex="-1">jrogers@cloudhub.com</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="slds-hint-parent">
+                                    <th data-label="Opportunity Name" scope="row">
+                                        <div class="slds-truncate" title="Cloudhub + Anypoint Connectors">
+                                            <a href="javascript:void(0);" tabindex="-1">Cloudhub + Anypoint Connectors</a>
+                                        </div>
+                                    </th>
+                                    <td data-label="Account Name">
+                                        <div class="slds-truncate" title="Cloudhub">Cloudhub</div>
+                                    </td>
+                                    <td data-label="Close Date">
+                                        <div class="slds-truncate" title="4/14/2015">4/14/2015</div>
+                                    </td>
+                                    <td data-label="Prospecting">
+                                        <div class="slds-truncate" title="Prospecting">Prospecting</div>
+                                    </td>
+                                    <td data-label="Confidence">
+                                        <div class="slds-truncate" title="20%">20%</div>
+                                    </td>
+                                    <td data-label="Amount">
+                                        <div class="slds-truncate" title="$25k">$25k</div>
+                                    </td>
+                                    <td data-label="Contact">
+                                        <div class="slds-truncate" title="jrogers@cloudhub.com">
+                                            <a href="javascript:void(0);" tabindex="-1">jrogers@cloudhub.com</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <apex:commandButton value="Previous"/>
+                        <apex:commandButton value="Next"/>
+                    </apex:tab>
+                    <apex:tab label="Tasks">
+                        <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered">
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Action">Action</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Subject">Subject</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Due Date">Due Date</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Status">Status</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Priority">Priority</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Status">Status</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Description">Description</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Created By Name">Created By Name</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Assigned to Name"> Assigned to Name</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="slds-hint-parent">
+                                    <th data-label="Opportunity Name" scope="row">
+                                        <div class="slds-truncate" title="Cloudhub">
+                                            <a href="javascript:void(0);" tabindex="-1">Cloudhub</a>
+                                        </div>
+                                    </th>
+                                    <td data-label="Account Name">
+                                        <div class="slds-truncate" title="Cloudhub">Cloudhub</div>
+                                    </td>
+                                    <td data-label="Close Date">
+                                        <div class="slds-truncate" title="4/14/2015">4/14/2015</div>
+                                    </td>
+                                    <td data-label="Prospecting">
+                                        <div class="slds-truncate" title="Prospecting">Prospecting</div>
+                                    </td>
+                                    <td data-label="Confidence">
+                                        <div class="slds-truncate" title="20%">20%</div>
+                                    </td>
+                                    <td data-label="Amount">
+                                        <div class="slds-truncate" title="$25k">$25k</div>
+                                    </td>
+                                    <td data-label="Contact">
+                                        <div class="slds-truncate" title="jrogers@cloudhub.com">
+                                            <a href="javascript:void(0);" tabindex="-1">jrogers@cloudhub.com</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="slds-hint-parent">
+                                    <th data-label="Opportunity Name" scope="row">
+                                        <div class="slds-truncate" title="Cloudhub + Anypoint Connectors">
+                                            <a href="javascript:void(0);" tabindex="-1">Cloudhub + Anypoint Connectors</a>
+                                        </div>
+                                    </th>
+                                    <td data-label="Account Name">
+                                        <div class="slds-truncate" title="Cloudhub">Cloudhub</div>
+                                    </td>
+                                    <td data-label="Close Date">
+                                        <div class="slds-truncate" title="4/14/2015">4/14/2015</div>
+                                    </td>
+                                    <td data-label="Prospecting">
+                                        <div class="slds-truncate" title="Prospecting">Prospecting</div>
+                                    </td>
+                                    <td data-label="Confidence">
+                                        <div class="slds-truncate" title="20%">20%</div>
+                                    </td>
+                                    <td data-label="Amount">
+                                        <div class="slds-truncate" title="$25k">$25k</div>
+                                    </td>
+                                    <td data-label="Contact">
+                                        <div class="slds-truncate" title="jrogers@cloudhub.com">
+                                            <a href="javascript:void(0);" tabindex="-1">jrogers@cloudhub.com</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <apex:commandButton value="Previous"/>
+                        <apex:commandButton value="Next"/>                
+                    </apex:tab>
+                    <apex:tab label="Events">
+                        <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered">
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Action">Action</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Subject">Subject</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Due Date">Due Date</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Start Date">Start Date</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="End Date">End Date</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Description">Description</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="slds-hint-parent">
+                                    <th data-label="Opportunity Name" scope="row">
+                                        <div class="slds-truncate" title="Cloudhub">
+                                            <a href="javascript:void(0);" tabindex="-1">Cloudhub</a>
+                                        </div>
+                                    </th>
+                                    <td data-label="Account Name">
+                                        <div class="slds-truncate" title="Cloudhub">Cloudhub</div>
+                                    </td>
+                                    <td data-label="Close Date">
+                                        <div class="slds-truncate" title="4/14/2015">4/14/2015</div>
+                                    </td>
+                                    <td data-label="Prospecting">
+                                        <div class="slds-truncate" title="Prospecting">Prospecting</div>
+                                    </td>
+                                    <td data-label="Confidence">
+                                        <div class="slds-truncate" title="20%">20%</div>
+                                    </td>
+                                    <td data-label="Amount">
+                                        <div class="slds-truncate" title="$25k">$25k</div>
+                                    </td>
+                                    <td data-label="Contact">
+                                        <div class="slds-truncate" title="jrogers@cloudhub.com">
+                                            <a href="javascript:void(0);" tabindex="-1">jrogers@cloudhub.com</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="slds-hint-parent">
+                                    <th data-label="Opportunity Name" scope="row">
+                                        <div class="slds-truncate" title="Cloudhub + Anypoint Connectors">
+                                            <a href="javascript:void(0);" tabindex="-1">Cloudhub + Anypoint Connectors</a>
+                                        </div>
+                                    </th>
+                                    <td data-label="Account Name">
+                                        <div class="slds-truncate" title="Cloudhub">Cloudhub</div>
+                                    </td>
+                                    <td data-label="Close Date">
+                                        <div class="slds-truncate" title="4/14/2015">4/14/2015</div>
+                                    </td>
+                                    <td data-label="Prospecting">
+                                        <div class="slds-truncate" title="Prospecting">Prospecting</div>
+                                    </td>
+                                    <td data-label="Confidence">
+                                        <div class="slds-truncate" title="20%">20%</div>
+                                    </td>
+                                    <td data-label="Amount">
+                                        <div class="slds-truncate" title="$25k">$25k</div>
+                                    </td>
+                                    <td data-label="Contact">
+                                        <div class="slds-truncate" title="jrogers@cloudhub.com">
+                                            <a href="javascript:void(0);" tabindex="-1">jrogers@cloudhub.com</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <apex:commandButton value="Previous"/>
+                        <apex:commandButton value="Next"/> 
+                        
+                    </apex:tab>
+                    <apex:tab label="Notes">
+                        <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered">
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Action">Action</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Subject">Subject</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Due Date">Due Date</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Status">Status</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Priority">Priority</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Status">Status</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Description">Description</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Created By Name">Created By Name</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Assigned to Name"> Assigned to Name</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="slds-hint-parent">
+                                    <th data-label="Opportunity Name" scope="row">
+                                        <div class="slds-truncate" title="Cloudhub">
+                                            <a href="javascript:void(0);" tabindex="-1">Cloudhub</a>
+                                        </div>
+                                    </th>
+                                    <td data-label="Account Name">
+                                        <div class="slds-truncate" title="Cloudhub">Cloudhub</div>
+                                    </td>
+                                    <td data-label="Close Date">
+                                        <div class="slds-truncate" title="4/14/2015">4/14/2015</div>
+                                    </td>
+                                    <td data-label="Prospecting">
+                                        <div class="slds-truncate" title="Prospecting">Prospecting</div>
+                                    </td>
+                                    <td data-label="Confidence">
+                                        <div class="slds-truncate" title="20%">20%</div>
+                                    </td>
+                                    <td data-label="Amount">
+                                        <div class="slds-truncate" title="$25k">$25k</div>
+                                    </td>
+                                    <td data-label="Contact">
+                                        <div class="slds-truncate" title="jrogers@cloudhub.com">
+                                            <a href="javascript:void(0);" tabindex="-1">jrogers@cloudhub.com</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="slds-hint-parent">
+                                    <th data-label="Opportunity Name" scope="row">
+                                        <div class="slds-truncate" title="Cloudhub + Anypoint Connectors">
+                                            <a href="javascript:void(0);" tabindex="-1">Cloudhub + Anypoint Connectors</a>
+                                        </div>
+                                    </th>
+                                    <td data-label="Account Name">
+                                        <div class="slds-truncate" title="Cloudhub">Cloudhub</div>
+                                    </td>
+                                    <td data-label="Close Date">
+                                        <div class="slds-truncate" title="4/14/2015">4/14/2015</div>
+                                    </td>
+                                    <td data-label="Prospecting">
+                                        <div class="slds-truncate" title="Prospecting">Prospecting</div>
+                                    </td>
+                                    <td data-label="Confidence">
+                                        <div class="slds-truncate" title="20%">20%</div>
+                                    </td>
+                                    <td data-label="Amount">
+                                        <div class="slds-truncate" title="$25k">$25k</div>
+                                    </td>
+                                    <td data-label="Contact">
+                                        <div class="slds-truncate" title="jrogers@cloudhub.com">
+                                            <a href="javascript:void(0);" tabindex="-1">jrogers@cloudhub.com</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <apex:commandButton value="Previous"/>
+                        <apex:commandButton value="Next"/> 
+                    </apex:tab>
+                    <apex:tab label="Attorney Notes">
+                        <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered">
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Action">Action</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Subject">Subject</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Due Date">Due Date</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Status">Status</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Priority">Priority</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Status">Status</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Description">Description</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Created By Name">Created By Name</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Assigned to Name"> Assigned to Name</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="slds-hint-parent">
+                                    <th data-label="Opportunity Name" scope="row">
+                                        <div class="slds-truncate" title="Cloudhub">
+                                            <a href="javascript:void(0);" tabindex="-1">Cloudhub</a>
+                                        </div>
+                                    </th>
+                                    <td data-label="Account Name">
+                                        <div class="slds-truncate" title="Cloudhub">Cloudhub</div>
+                                    </td>
+                                    <td data-label="Close Date">
+                                        <div class="slds-truncate" title="4/14/2015">4/14/2015</div>
+                                    </td>
+                                    <td data-label="Prospecting">
+                                        <div class="slds-truncate" title="Prospecting">Prospecting</div>
+                                    </td>
+                                    <td data-label="Confidence">
+                                        <div class="slds-truncate" title="20%">20%</div>
+                                    </td>
+                                    <td data-label="Amount">
+                                        <div class="slds-truncate" title="$25k">$25k</div>
+                                    </td>
+                                    <td data-label="Contact">
+                                        <div class="slds-truncate" title="jrogers@cloudhub.com">
+                                            <a href="javascript:void(0);" tabindex="-1">jrogers@cloudhub.com</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="slds-hint-parent">
+                                    <th data-label="Opportunity Name" scope="row">
+                                        <div class="slds-truncate" title="Cloudhub + Anypoint Connectors">
+                                            <a href="javascript:void(0);" tabindex="-1">Cloudhub + Anypoint Connectors</a>
+                                        </div>
+                                    </th>
+                                    <td data-label="Account Name">
+                                        <div class="slds-truncate" title="Cloudhub">Cloudhub</div>
+                                    </td>
+                                    <td data-label="Close Date">
+                                        <div class="slds-truncate" title="4/14/2015">4/14/2015</div>
+                                    </td>
+                                    <td data-label="Prospecting">
+                                        <div class="slds-truncate" title="Prospecting">Prospecting</div>
+                                    </td>
+                                    <td data-label="Confidence">
+                                        <div class="slds-truncate" title="20%">20%</div>
+                                    </td>
+                                    <td data-label="Amount">
+                                        <div class="slds-truncate" title="$25k">$25k</div>
+                                    </td>
+                                    <td data-label="Contact">
+                                        <div class="slds-truncate" title="jrogers@cloudhub.com">
+                                            <a href="javascript:void(0);" tabindex="-1">jrogers@cloudhub.com</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <apex:commandButton value="Previous"/>
+                        <apex:commandButton value="Next"/> 
+                    </apex:tab>
+                </apex:tabPanel>
+                
+                
+            </apex:pageBlockSection>
+        </apex:pageBlock>   
+    </apex:form>        
+</apex:page>

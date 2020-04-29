@@ -1,0 +1,114 @@
+.THIS .custom-title_text {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 30px !important;
+    color: #0A202D;
+    font-weight:500;
+}
+
+.THIS .custom-title_subtext {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 30px !important;
+    color: #0A202D;
+    font-weight:500;
+    margin-top: 30px; 
+    Top: 100px; 
+    padding-left:7px;
+}
+
+
+.THIS hr {
+    margin: 0em;
+}
+
+.THIS .linktag {
+    text-decoration: underline;
+    margin-left: 10px;
+}
+
+.THIS .sidepadding {
+    padding-right: 5vw;
+}
+
+
+.THIS .documentTable {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 15px;
+    margin-right: 15px;
+    margin-top: 10px;
+    page-break-inside:auto;
+} 
+
+.THIS .upload-button{
+    width: -webkit-fill-available;
+}
+
+.THIS .download {
+    text-align: center;
+}
+
+.THIS .download img {
+    	width: 30px;
+        
+	}
+
+.THIS .tipList{
+    background-color: #D5DEE1;
+    padding: 10px;
+    font-size: 15px;
+    height: 100%;
+}
+
+.THIS .tipList ul {
+    margin-top: 1vw;
+}
+
+.THIS .tipList li {
+    margin: 0 0 0.5vw 0
+}
+
+@media screen and (max-width: 810px) {
+    .THIS .recentuploads {
+        left: 0%; 
+        top: 50%; 
+}
+
+	.THIS .documentTable {
+        width: 45%;
+    }    
+    
+}
+
+@media screen and (max-width: 1020px) {    
+    .THIS .documentTable {
+        font-size: 150%; 
+    }
+    
+	.THIS .slds-table td  {
+        padding-bottom: 1.25rem;
+    	padding-top: 1.25rem;
+    }
+    
+    .THIS .slds-table td img  {
+        width: 125%;
+    }
+    
+    .THIS .slds-table tr td {
+ 		white-space: pre-wrap
+    }
+    
+    .THIS .download img {
+    	height: 50px;
+        
+	}
+    
+    .THIS .tipList{
+    background-color: #D5DEE1;
+    padding: 10px;
+    font-size: 120%;
+    height: 260px;
+	}
+    
+    .THIS .sidepadding {
+    padding: 0px;
+	}
+}

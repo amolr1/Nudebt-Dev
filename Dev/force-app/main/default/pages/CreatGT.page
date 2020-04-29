@@ -1,0 +1,103 @@
+<apex:page standardController="nu_dse__Group_Task__c" >
+<apex:form >
+
+<apex:includeScript value="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"/>
+    <script>
+        var j$ = jQuery.noConflict();
+        j$("iframe").each(function(){
+            j$(this).load(function() {
+                j$(this).height( j$(this).contents().find("body").height() );
+            });
+        });
+    </script>
+<apex:slds />
+<style type="text/css">
+  .myClass
+  {
+    color:white !important;
+    background: Green !important;
+    float: right;
+  }
+ .dataTables_length
+  {
+    padding-bottom:15px;
+    margin-top: -20px;
+  }
+  .mainTitle
+  {
+    color: #f3f3ec !important;
+  }
+  .pbHeader 
+   {
+     background: #16325c !important;
+   }
+</style>
+         
+       <apex:pageblock >
+             <Apex:pageblockSection collapsible="false" columns="1">
+             <div class="slds-align_absolute-center" style="background: #16325c; color: white;"><font size="+2">Create Group Task</font></div>
+             </Apex:pageblockSection>
+             <apex:pageBlockSection >
+                <apex:inputField value="{!nu_dse__Group_Task__c.Department__c}"/>
+                <apex:inputField value="{!nu_dse__Group_Task__c.nu_dse__Subject__c}"/>
+                <apex:inputField value="{!nu_dse__Group_Task__c.Subject_Picklist__c}" required="true"/>
+                <apex:inputField value="{!nu_dse__Group_Task__c.nu_dse__Type__c}"/>
+                <apex:inputField value="{!nu_dse__Group_Task__c.nu_dse__Related_To__c}"/>
+                <apex:inputField value="{!nu_dse__Group_Task__c.Program__c}"/>
+                <apex:inputField value="{!nu_dse__Group_Task__c.nu_dse__Description__c}"/>
+                <apex:inputField value="{!nu_dse__Group_Task__c.nu_dse__ActivityDate__c}" required="true"/>
+                <apex:inputField value="{!nu_dse__Group_Task__c.nu_dse__Status__c}" required="true"/>
+                <apex:inputField value="{!nu_dse__Group_Task__c.OwnerId}"/>
+                <apex:inputField value="{!nu_dse__Group_Task__c.Complaint_Source__c}"/>
+
+                
+             </apex:pageBlockSection>
+           <!--  <apex:pageBlockSection >
+             
+             <apex:outputLabel value="Department"></apex:outputLabel>
+             <apex:inputText />
+             
+             <apex:outputLabel value="Subject"></apex:outputLabel>
+             <apex:inputText />
+             
+             <apex:outputLabel value="Subject Picklist"></apex:outputLabel>
+             <apex:inputText required="true"/>
+             
+             <apex:outputLabel value="Type"></apex:outputLabel>
+             <apex:inputText />
+             
+             <apex:outputLabel value="Related To"></apex:outputLabel>
+             <apex:inputText />
+             
+             <apex:outputLabel value="Program"></apex:outputLabel>
+             <apex:inputText />
+             
+             <apex:outputLabel value="Activity Date"></apex:outputLabel>
+             <apex:inputText />
+             
+             <apex:outputLabel value="Status"></apex:outputLabel>
+             <apex:inputText />
+             
+             <apex:outputLabel value="OwnerId"></apex:outputLabel>
+             <apex:inputText />
+             
+              <apex:outputLabel value="Complaint Source"></apex:outputLabel>
+             <apex:inputText />
+             
+             </apex:pageBlockSection>  -->
+        
+        
+        
+        
+        
+        
+        <apex:pageblockButtons location="bottom" >
+         
+         <apex:commandbutton value="Save" action="{!save}" />
+         <apex:commandbutton value="Cancel"  />
+         
+       </apex:pageblockButtons>    
+ 
+            </apex:pageblock>                           
+</apex:form>
+</apex:page>

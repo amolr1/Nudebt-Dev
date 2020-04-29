@@ -1,0 +1,30 @@
+<apex:page standardController="Account" recordSetVar="Account"> 
+<apex:form >
+    	<apex:pageBlock tabStyle="Account">
+        
+                <apex:tabPanel >
+                    <apex:tab title="Group Task" label="Group Task">
+                       
+                            <apex:pageBlockSection >
+                            <apex:repeat >
+                                 <apex:dataTable value="{!Account}" var="c">
+                                    <apex:column headerValue="Action" value="{!c.Name}" />
+                                    <apex:column headerValue="Subject" value="{!c.Phone}"/>
+                                    <apex:column headerValue="Due Date"/>
+                                    <apex:column headerValue="Type" />
+                                    <apex:column headerValue="Description" />
+                                    <apex:column headerValue="Status" />
+                                    <apex:column headerValue="NDS Created BY" />
+                                    <apex:column headerValue="NDS assigned" />
+                                    <apex:column headerValue="Owner Name" />
+                               </apex:dataTable> 
+                            </apex:repeat>
+                            </apex:pageBlockSection>
+                    
+                   </apex:tab>  
+                    
+                </apex:tabPanel>    
+          
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

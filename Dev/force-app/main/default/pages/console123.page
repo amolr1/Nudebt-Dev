@@ -1,0 +1,45 @@
+<apex:page standardController="nu_dse__Group_Task__c" recordSetVar="pg">
+    <apex:form >
+    	<apex:pageBlock tabStyle="nu_dse__Fee_Template__c">
+        
+                <apex:tabPanel >
+                    <apex:tab title="Group Task" label="Group Task">
+                        <apex:pageBlockTable value="{!pg}" var="p">
+                            <apex:column headerValue="Action" value="{!p.Amount__c}"/>
+                            <apex:column headerValue="Subject" value="{!p.Amount__c}"/>
+                            <apex:column headerValue="Due Date" value="{!p.Amount__c}"/>
+                            <apex:column headerValue="Type" value="{!p.Amount__c}"/>
+                            <apex:column headerValue="Description" value="{!p.Amount__c}"/>
+                            <apex:column headerValue="Status" value="{!p.Amount__c}"/>
+                            <apex:column headerValue="NDS Created BY" value="{!p.Amount__c}"/>
+                            <apex:column headerValue="NDS assigned" value="{!p.Amount__c}"/>
+                            <apex:column headerValue="Owner Name" value="{!p.Amount__c}"/>
+                        </apex:pageBlockTable>
+                   </apex:tab>  
+                    <apex:tab title="Task" label="Task">
+                        <apex:pageBlockTable value="{!pg}" var="p">
+                            <apex:column headerValue="Action" />
+                            <apex:column headerValue="Subject" />
+                            <apex:column headerValue="Due Date" />
+                            <apex:column headerValue="Status" />
+                            <apex:column headerValue="Priority" />
+                            <apex:column headerValue="Description" />
+                            <apex:column headerValue="Created BY Name" />
+                            <apex:column headerValue="Assigned To Name" />
+                        </apex:pageBlockTable>
+                   </apex:tab>   
+                    <apex:tab title="Event" label="Event">
+                        <apex:pageBlockTable value="{!pg}" var="p">
+                            <apex:column headerValue="Action" />
+                            <apex:column headerValue="Subject" />
+                            <apex:column headerValue="Due Date" />
+                            <apex:column headerValue="Start Date" />
+                            <apex:column headerValue="End Date" />
+                            <apex:column headerValue="Description" />
+                        </apex:pageBlockTable>
+                   </apex:tab> 
+                </apex:tabPanel>    
+          
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

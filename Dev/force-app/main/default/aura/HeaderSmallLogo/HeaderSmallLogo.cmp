@@ -1,0 +1,17 @@
+<aura:component access="global" extends="c:abstractServer" controller="SFSPortal_DashboardMetricsController" implements="forceCommunity:availableForAllPageTypes">
+    <ltng:require styles="{!$Resource.fontawsome + '/css/font-awesome.css'}" />
+    <aura:attribute name="footerValueMap" type="Map" access="public" default="{}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+            <lightning:layout >
+                <!--right layout section -->
+                <lightning:layoutItem size="7" smallDeviceSize="7" mediumDeviceSize="7">
+                    <div style="padding-left: 36px;float:right;"> 
+                        <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12">
+                            <div>
+                                <span><img src="{!''+ v.footerValueMap.companyLogoSmallURL}" style="bottom: 0;height:6rem;"/></span>
+                            </div>
+                        </lightning:layoutItem>
+                    </div>
+                </lightning:layoutItem>
+            </lightning:layout>   
+</aura:component>

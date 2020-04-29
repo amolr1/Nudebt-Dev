@@ -1,0 +1,1011 @@
+<apex:page controller="testVFClass1" showHeader="False" sidebar="false" docType="HTML-5.0">
+    
+    <apex:form id="thePage">
+    <apex:param name="recordId"  assignTo="{!vfParam}" value="recordId" />
+    
+    <!-- Jquery -->  
+    <apex:includeScript value="//code.jquery.com/jquery-1.11.3.min.js" />  
+    <apex:stylesheet value="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />  
+    <!-- DataTable -->  
+    <apex:includeScript value="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js" />  
+    <apex:stylesheet value="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />  
+    <!-- Search Highlight -->  
+    <apex:includeScript value="//bartaz.github.io/sandbox.js/jquery.highlight.js" />  
+    <apex:includeScript value="//cdn.datatables.net/plug-ins/1.10.9/features/searchHighlight/dataTables.searchHighlight.min.js" />  
+    <apex:stylesheet value="//cdn.datatables.net/plug-ins/1.10.9/features/searchHighlight/dataTables.searchHighlight.css" />  
+    
+    <!--CSS-->
+    <style type="text/css">
+        .field-style {
+        border: 1px solid rgb(221, 219, 218)!important;
+        border-radius: .25rem!important; 
+        height: 2rem;width: 16rem;
+        }
+        .datePicker {
+        z-index: 9001;
+        position: fixed;
+        }
+        .myClass {
+        color:white !important;
+        background: Green !important;
+        float: right;
+        }
+        .dataTables_length {
+        padding-bottom:15px;
+        margin-top: -20px;
+        }
+        .mainTitle {
+        color: #f3f3ec !important;
+        }
+        .pbHeader {
+        background: #16325c !important;
+        }
+        
+        /* toast message css */
+        .required-true.fieldRequired, .required-true.error {
+        border: 2px solid rgb(255, 1, 13) !important;
+        }
+        
+        .requiredInput .errorMsg {
+        display: none !important;
+        }
+        .slds-scope .slds-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        }
+        .slds-scope .slds-button__icon--stateful, .slds-scope .slds-button__icon_stateful {                
+        width: 1rem !important;
+        height: 1rem !important;
+        }
+        .required-true {            
+        border-left-color: red !important;
+        border-left-width: medium !important;
+        }
+        .messageClass-error {
+        
+        background-color : rgb(194, 57, 52) !important;
+        color : white !important;
+        }
+        
+        .messageClass-success {
+        
+        background-color : green !important;
+        color : white !important;
+        }
+        
+        .messageClass {
+        
+        background-color : black !important;
+        }
+        
+        /* End of toast message css */
+        
+    </style>
+    <script type="text/javascript">  
+    
+    var j$ = jQuery.noConflict();
+    
+    j$(document).ready(function() {
+        
+        documentReady();
+    });  
+    j$.fn.dataTableExt.oApi.fnFilterAll = function(oSettings, sInput, iColumn, bRegex, bSmart) {  
+        
+        var settings = j$.fn.dataTableSettings;  
+        for (var i = 0; i < settings.length; i++) { 
+            
+            settings[i].oInstance.fnFilter(sInput, iColumn, bRegex, bSmart);  
+        }  
+    };  
+    
+    function documentReady() {
+    
+        var casesTable1 = j$('[cid$="casesTable1"]').parent('table').eq(0).DataTable({  
+            
+            //enables results highlight  
+            searchHighlight: true,  
+            
+            //sets record lengths to show in picklist  
+            aLengthMenu: [  
+                [10, 25, 50, 100],  
+                [10, 25, 50, 100]  
+            ], 
+            
+            "iDisplayLength": 10,  
+            
+            //adds copy, print buttons...  
+            dom: 'lBrtip', //l=length, B=buttons, f=filter(search), r=processing, t=the table, I=table summary, p=page controls  
+            buttons: [],  
+        });
+        
+        var casesTable2 = j$('[cid$="casesTable2"]').parent('table').eq(0).DataTable({  
+            
+            //enables results highlight  
+            searchHighlight: true,  
+            
+            //sets record lengths to show in picklist  
+            aLengthMenu: [  
+                [10, 25, 50, 100],  
+                [10, 25, 50, 100]  
+            ],  
+            
+            "iDisplayLength": 10,  
+            
+            //adds copy, print buttons...  
+            dom: 'lBrtip', //l=length, B=buttons, f=filter(search), r=processing, t=the table, I=table summary, p=page controls  
+            buttons: [],  
+        });  
+        
+        var casesTable2 = j$('[cid$="casesTable3"]').parent('table').eq(0).DataTable({  
+            
+            //enables results highlight  
+            searchHighlight: true,  
+            
+            //sets record lengths to show in picklist  
+            aLengthMenu: [  
+                [10, 25, 50, 100],  
+                [10, 25, 50, 100]  
+            ],  
+            
+            "iDisplayLength": 10,  
+            
+            //adds copy, print buttons...  
+            dom: 'lBrtip', //l=length, B=buttons, f=filter(search), r=processing, t=the table, I=table summary, p=page controls  
+            buttons: [],  
+        });  
+        
+        var casesTable2 = j$('[cid$="casesTable4"]').parent('table').eq(0).DataTable({  
+            
+            //enables results highlight  
+            searchHighlight: true,  
+            
+            //sets record lengths to show in picklist  
+            aLengthMenu: [  
+                [10, 25, 50, 100],  
+                [10, 25, 50, 100]  
+            ],  
+            
+            "iDisplayLength": 10,  
+            
+            //adds copy, print buttons...  
+            dom: 'lBrtip', //l=length, B=buttons, f=filter(search), r=processing, t=the table, I=table summary, p=page controls  
+            buttons: [],  
+        });  
+        
+        var casesTable2 = j$('[cid$="casesTable5"]').parent('table').eq(0).DataTable({  
+            
+            //enables results highlight  
+            searchHighlight: true,  
+            
+            //sets record lengths to show in picklist  
+            aLengthMenu: [  
+                [10, 25, 50, 100],  
+                [10, 25, 50, 100]  
+            ],  
+            
+            "iDisplayLength": 10,  
+            
+            //adds copy, print buttons...  
+            dom: 'lBrtip', //l=length, B=buttons, f=filter(search), r=processing, t=the table, I=table summary, p=page controls  
+            buttons: [],  
+        });  
+        
+        var casesTable2 = j$('[cid$="casesTable6"]').parent('table').eq(0).DataTable({  
+            
+            //enables results highlight  
+            searchHighlight: true,  
+            
+            //sets record lengths to show in picklist  
+            aLengthMenu: [  
+                [10, 25, 50, 100],  
+                [10, 25, 50, 100]  
+            ],  
+            
+            "iDisplayLength": 10,  
+            
+            //adds copy, print buttons...  
+            dom: 'lBrtip', //l=length, B=buttons, f=filter(search), r=processing, t=the table, I=table summary, p=page controls  
+            buttons: [],  
+        });  
+        
+        var casesTable2 = j$('[cid$="casesTable7"]').parent('table').eq(0).DataTable({  
+            
+            //enables results highlight  
+            searchHighlight: true,  
+            
+            //sets record lengths to show in picklist  
+            aLengthMenu: [  
+                [10, 25, 50, 100],  
+                [10, 25, 50, 100]  
+            ],  
+            
+            "iDisplayLength": 10,  
+            
+            //adds copy, print buttons...  
+            dom: 'lBrtip', //l=length, B=buttons, f=filter(search), r=processing, t=the table, I=table summary, p=page controls  
+            buttons: [],  
+        });  
+        
+        var casesTable2 = j$('[cid$="casesTable8"]').parent('table').eq(0).DataTable({  
+            
+            //enables results highlight  
+            searchHighlight: true,  
+            
+            //sets record lengths to show in picklist  
+            aLengthMenu: [  
+                [10, 25, 50, 100],  
+                [10, 25, 50, 100]  
+            ],  
+            
+            "iDisplayLength": 10,  
+            
+            //adds copy, print buttons...  
+            dom: 'lBrtip', //l=length, B=buttons, f=filter(search), r=processing, t=the table, I=table summary, p=page controls  
+            buttons: [],  
+        });  
+        
+        var casesTable2 = j$('[cid$="casesTable9"]').parent('table').eq(0).DataTable({  
+            
+            //enables results highlight  
+            searchHighlight: true,  
+            
+            //sets record lengths to show in picklist  
+            aLengthMenu: [  
+                [10, 25, 50, 100],  
+                [10, 25, 50, 100]  
+            ],  
+            
+            "iDisplayLength": 10,  
+            
+            //adds copy, print buttons...  
+            dom: 'lBrtip', //l=length, B=buttons, f=filter(search), r=processing, t=the table, I=table summary, p=page controls  
+            buttons: [],  
+        });  
+        
+        var casesTable2 = j$('[cid$="casesTable10"]').parent('table').eq(0).DataTable({  
+            
+            //enables results highlight  
+            searchHighlight: true,  
+            
+            //sets record lengths to show in picklist  
+            aLengthMenu: [  
+                [10, 25, 50, 100],  
+                [10, 25, 50, 100]  
+            ],  
+            
+            "iDisplayLength": 10,  
+            
+            //adds copy, print buttons...  
+            dom: 'lBrtip', //l=length, B=buttons, f=filter(search), r=processing, t=the table, I=table summary, p=page controls  
+            buttons: [],  
+        });  
+        
+        j$("#table1, #table2, #table3, #table4, #table5").dataTable({  
+            
+            "bPaginate": false,  
+        });  
+        
+        var oTable0 = j$("#table1, #table2, #table3, #table4, #table5, #table6, #table7, #table8, #table9, #table10").dataTable();  
+        j$("#Search_All1, #Search_All2, #Search_All3, #Search_All4, #Search_All5, #Search_All6, #Search_All7, #Search_All8, #Search_All9, #Search_All10").keyup(function() { 
+            
+            // Filter on the column (the index) of this element  
+            oTable0.fnFilterAll(this.value);  
+        }); 
+    }
+    <!-- document.ready -->
+        /* full spinner script */        
+        function showFullSpinner() {
+            
+            var spinner = document.getElementById('fullSpinner');
+            if(spinner && spinner.style.setProperty) {
+                
+                spinner.style.setProperty('display', 'block');
+            } else {
+                
+                spinner.style.display = 'block';
+            }
+        }
+    
+    function hideFullSpinner() {
+        
+        var spinner = document.getElementById('fullSpinner');
+        if(spinner && spinner.style.setProperty) {
+            
+            spinner.style.setProperty('display', 'none');
+        } else {
+            
+            spinner.style.display = 'none';
+        }
+    }
+    
+    /* End of full spinner script */
+    
+    /* Toast message script */
+    
+    function showMessage_Toast(message, type, issuccess) {
+        
+        if(message) {
+            
+            var dafaultTheme = 'slds-theme_';
+            var dafaultTheme = 'messageClass';
+            
+            if(type) {
+                
+                dafaultTheme += '-error';
+            }  else if (issuccess) {
+                
+                dafaultTheme += '-success';
+            }
+            var messageContainer = document.getElementById('toastmessage_container');
+            var messageTheme = document.getElementById('message_toast-theme');
+            var messageContent = document.getElementById('toastmessage-content');
+            
+            messageContent.innerHTML = message;
+            messageContent.className = dafaultTheme;
+            messageTheme.className = 'slds-notify slds-notify_toast ' + dafaultTheme;
+            messageContainer.style.display = 'block';
+            setTimoutClose();
+        }
+    }
+    
+    function hideMessage_Toast() {
+        
+        document.getElementById('toastmessage_container').style.display = 'none';
+    }
+    
+    function setTimoutClose() {
+        var timeId = window.setTimeout(function (){
+            hideMessage_Toast();
+        }, 5000);
+    }
+    /* End of Toast message script */
+    
+ 
+    </script>
+    
+    
+    
+    <apex:slds />
+        <div class="slds-tabs--default" >
+            <ul class="slds-tabs--default__nav" role="tablist" style="background: #16325c;" >
+                <li class="slds-tabs--default__item slds-text-heading--label slds-active" title="Group Task" role="presentation" style="color: white;">
+                    <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="groupTaskContent_Id" id="groupTask_Id">Group Task</a>
+                </li>
+                <li class="slds-tabs--default__item slds-text-heading--label" title="Tasks" role="presentation" style="color: white;">
+                    <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="true" aria-controls="tasksContent_Id" id="tasksItem_Id">Tasks</a>
+                </li>
+                <li class="slds-tabs--default__item slds-text-heading--label" title="Events" role="presentation" style="color: white;">
+                    <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-2" aria-selected="true" aria-controls="eventsContent_Id" id="eventsItem_Id">Events</a>
+                </li>
+                <li class="slds-tabs--default__item slds-text-heading--label" title="Notes" role="presentation" style="color: white;">
+                    <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-3" aria-selected="true" aria-controls="notesContent_Id" id="notesItem_Id">Notes</a>
+                </li>
+                <li class="slds-tabs--default__item slds-text-heading--label" title="Attorney Notes" role="presentation" style="color: white;">
+                    <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-4" aria-selected="true" aria-controls="attorneyNotesContent_Id" id="attorneyNotesItem_Id">Attorney Notes</a>
+                </li>
+            </ul>
+            
+            <div>
+                <div id="fullSpinner" class="slds-spinner_container" style="display:none;">
+                    <div class="slds-spinner--brand slds-spinner slds-spinner--medium" role="alert">
+                        <span class="slds-assistive-text">Loading</span>
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Toast message block -->
+            <div id="toastmessage_container" class="slds-notify_container" style="display:none;">
+                <div id="message_toast-theme" class="slds-notify slds-notify_toast " role="alert">
+                    <span class="slds-assistive-text">success</span>
+                    <button class="slds-button slds-notify__close slds-button--icon-inverse" onclick="hideMessage_Toast();" type="button">
+                        <span style="font-family: Arial,Helvetica,sans-serif;">X</span>
+                    </button>
+                    <div id="toastmessage-content" class="slds-notify__content" style="font-family: Arial,Helvetica,sans-serif;"></div>
+                </div>
+            </div>
+            <!-- END OF Toast message block -->
+            
+            <div id="groupTaskContent_Id" class="slds-tabs--default__content slds-show" role="tabpanel" aria-labelledby="groupTask_Id">
+                <apex:pageBlock title="Open Group Tasks" id="opengroupTaskContent_Id" >
+                    <apex:pageBlockButtons location="top">   
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Refresh" onclick="showFullSpinner();" reRender="thePage" oncomplete="hideFullSpinner(); documentReady();" action="{!Refresh}"  /> <!--action="https://c.ap4.visual.force.com/apex/newPatient"/>-->
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Create Group Task" onclick="showFullSpinner();"  action="{!CreateGroupTask}" oncomplete="hideFullSpinner(); documentReady();" reRender="thePage" />
+                    </apex:pageBlockButtons>
+                    
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All1"  />
+                    </div>
+                    
+                    <apex:pageBlockTable value="{!openGroupTaskList}" var="acc" html-cid="casesTable1" id="table1" >
+                        <apex:column style="align:left; width: 7rem;" headerValue="Action" >
+                            
+                            <apex:commandLink action="{!viewGroupTask}" onclick="showFullSpinner();">View
+                                <apex:param value="{!acc.Id}" name="groupTaskId" assignTo="{!groupTaskId}"/>
+                            </apex:commandLink> | <apex:commandLink action="{!EditGroupTask}" onclick="showFullSpinner();" >Edit
+                            <apex:param value="{!acc.Id}"  name="groupTaskId" assignTo="{!groupTaskId}"/>
+                            </apex:commandLink>
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Subject">
+                            <apex:outputField value="{!acc.nu_dse__Subject__c}"/>
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Due Date">
+                            <apex:outputField value="{!acc.nu_dse__ActivityDate__c}"/>
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Type">
+                            <apex:outputField value="{!acc.nu_dse__Type__c}"/>
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Description">
+                            <apex:outputField value="{!acc.nu_dse__Description__c}"/>
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Status">
+                            <apex:outputField value="{!acc.nu_dse__Status__c}"/>
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="NDS Created By">
+                            <apex:outputField value="{!acc.NDS_Created_By__c}"/>
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="NDS Assigned">
+                            <apex:outputField value="{!acc.NDS_Assigned__c}"/>
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Owner Name">
+                            <apex:outputField value="{!acc.Owner_Name__c }"/>
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlock><br />
+                
+                <apex:pageBlock title="Group Tasks History" >
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All2"  />
+                    </div>
+                    <apex:pageBlockTable value="{!closeGroupTaskList}" var="acc" html-cid="casesTable2" id="table2">
+                        <apex:column style="align:left; width: 7rem;" headerValue="Action" >
+                            
+                            <apex:commandLink action="{!viewGroupTask}" >View
+                                <apex:param value="{!acc.Id}" name="groupTaskId" assignTo="{!groupTaskId}"/>
+                            </apex:commandLink> 
+                            | 
+                            <apex:commandLink action="{!EditGroupTask}" >Edit
+                                <apex:param value="{!acc.Id}"  name="groupTaskId" assignTo="{!groupTaskId}"/>
+                            </apex:commandLink>
+                        </apex:column>
+                        
+                        <apex:column style="align:left" headerValue="Subject">
+                            <apex:outputField value="{!acc.nu_dse__Subject__c}"/>
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Due Date">
+                            <apex:outputField value="{!acc.nu_dse__ActivityDate__c}"/>
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Type">
+                            <apex:outputField value="{!acc.nu_dse__Type__c}"/>
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Description">
+                            <apex:outputField value="{!acc.nu_dse__Description__c}"/>
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Status">
+                            <apex:outputField value="{!acc.nu_dse__Status__c}"/>
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="NDS Created By">
+                            <apex:outputField value="{!acc.NDS_Created_By__c}"/>
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="NDS Assigned">
+                            <apex:outputField value="{!acc.NDS_Assigned__c}"/>
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Owner Name">
+                            <apex:outputField value="{!acc.Owner_Name__c }"/>
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlock> 
+            </div>
+            <div id="tasksContent_Id" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tasksItem_Id">
+                <apex:pageBlock title="Open Tasks" id="cases1" >
+                    <apex:pageBlockButtons location="top">   
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Refresh"  action="{!Refresh}"/>  <!-- action="https://c.ap4.visual.force.com/apex/newPatient"/>-->
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Schedule Task" onclick="showFullSpinner();" action="{!scheduleTask}"/>
+                        <div id="systemTaskPanel" style="display: inline-block; margin-left: 10px; float: right;">
+                            <div class="slds-form-element"><label class="slds-checkbox--toggle slds-grid">
+                                <input type="checkbox" id="systemTaskCheck" onchange="systemTaskVisible();" style="display: inline-block; margin-left: 10px; float: right;"/>
+                                <span id="toggle-desc" class="slds-checkbox--faux_container nudebt" aria-live="assertive">
+                                    <span class="slds-checkbox--faux"></span>
+                                    <span class="slds-checkbox--on" Style="color:white !important;">Hide System Tasks</span>
+                                    <span class="slds-checkbox--off" Style="color:white !important;">Show System Tasks</span>
+                                </span>
+                                </label>
+                            </div>
+                        </div>
+                    </apex:pageBlockButtons>
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All3"  />
+                    </div>
+                    <apex:pageBlockTable value="{!openTaskList }" var="acc1" html-cid="casesTable3" id="table3">
+                        <apex:column style="align:left; width: 7rem;" headerValue="Action" >
+                            <apex:commandLink action="{!viewTask}" >View
+                                <apex:param value="{!acc1.Id}" name="TaskId" assignTo="{!TaskId}"/>
+                            </apex:commandLink> 
+                            | 
+                            <apex:commandLink action="{!EditTask}" >Edit
+                                <apex:param value="{!acc1.Id}"  name="TaskId" assignTo="{!TaskId}"/>
+                            </apex:commandLink>
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Subject">
+                            <apex:outputField value="{!acc1.Subject}"/>  
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Due Date">
+                            <apex:outputField value="{!acc1.ActivityDate}"/>       
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Status">
+                            <apex:outputField value="{!acc1.Status}"/> 
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Priority">
+                            <apex:outputField value="{!acc1.Priority}"/>   
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Description">
+                            <apex:outputField value="{!acc1.Description}"/>   
+                        </apex:column>
+                        
+                        <apex:column style="align:left" headerValue="Created By Name">
+                            <apex:outputField value="{!acc1.CreatedById}"/>   
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Assigned To Name">
+                            <apex:outputField value="{!acc1.OwnerId}"/>    
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlock><br />
+                <apex:pageBlock title="Tasks History" >
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All4"  />
+                    </div>
+                    <apex:pageBlockTable value="{!ClosedTaskList}" var="acc1" html-cid="casesTable4" id="table4">
+                        
+                        <apex:column style="align:left; width: 7rem;" headerValue="Action" >
+                            
+                            <apex:commandLink action="{!viewTask}" >View
+                                <apex:param value="{!acc1.Id}" name="TaskId" assignTo="{!TaskId}"/>
+                            </apex:commandLink> 
+                            | 
+                            <apex:commandLink action="{!EditTask}" >Edit
+                                <apex:param value="{!acc1.Id}"  name="TaskId" assignTo="{!TaskId}"/>
+                            </apex:commandLink>
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Subject">
+                            <apex:outputField value="{!acc1.Subject}"/>  
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Due Date">
+                            <apex:outputField value="{!acc1.ActivityDate}"/>       
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Status">
+                            <apex:outputField value="{!acc1.Status}"/> 
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Priority">
+                            <apex:outputField value="{!acc1.Priority}"/>   
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Description">
+                            <apex:outputField value="{!acc1.Description}"/>   
+                        </apex:column>
+                        
+                        <apex:column style="align:left" headerValue="Created By Name">
+                            <apex:outputField value="{!acc1.CreatedById}"/>   
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Assigned To Name">
+                            <apex:outputField value="{!acc1.OwnerId}"/>    
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlock> 
+            </div> 
+            <div id="eventsContent_Id" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="eventsItem_Id">
+                <apex:pageBlock title="Open Events" id="cases2" >
+                    <apex:pageBlockButtons location="top">   
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Refresh"  action="{!Refresh}"/>  <!-- action="https://c.ap4.visual.force.com/apex/newPatient"/>-->
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Schedule Event" onclick="showFullSpinner();" action="{!scheduleEvent}"/>
+                    </apex:pageBlockButtons>
+                    
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All5"  />
+                    </div>
+                    
+                    <apex:pageBlockTable value="{!openEventList}" var="acc2" html-cid="casesTable5" id="table5">
+                        <apex:column style="align:left; width: 7rem;" headerValue="Action" >
+                            
+                            <apex:commandLink action="{!viewEvent}" >View
+                                <apex:param value="{!acc2.Id}" name="EventId" assignTo="{!EventId}"/>
+                            </apex:commandLink> 
+                            | 
+                            <apex:commandLink action="{!EditEvent}" >Edit
+                                <apex:param value="{!acc2.Id}"  name="EventId" assignTo="{!EventId}"/>
+                            </apex:commandLink>
+                        </apex:column>  
+                        <apex:column style="align:left" headerValue="Subject">
+                            <apex:outputField value="{!acc2.Subject }"/>   
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Due Date">
+                            <apex:outputField value="{!acc2.ActivityDate}  "/>      
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Start Date Time">
+                            <apex:outputField value="{!acc2.StartDateTime}"/>   
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="End Date Time">
+                            <apex:outputField value=" {!acc2.EndDateTime}"/>   
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Description">
+                            <apex:outputField value="{!acc2.Description}"/>   
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlock><br />
+                <apex:pageBlock title="Event History" >
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All6"  />
+                    </div>
+                    <apex:pageBlockTable value="{!ClosedEventList }" var="acc2" html-cid="casesTable6" id="table6">
+                        <apex:column style="align:left; width: 7rem;" headerValue="Action" >
+                            
+                            <apex:commandLink action="{!viewEvent}" >View
+                                <apex:param value="{!acc2.Id}" name="EventId" assignTo="{!EventId}"/>
+                            </apex:commandLink> 
+                            | 
+                            <apex:commandLink action="{!EditEvent}" >Edit
+                                <apex:param value="{!acc2.Id}"  name="EventId" assignTo="{!EventId}"/>
+                            </apex:commandLink>
+                        </apex:column>  
+                        <apex:column style="align:left" headerValue="Subject">
+                            <apex:outputField value="{!acc2.Subject }"/>   
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Due Date">
+                            <apex:outputField value="{!acc2.ActivityDate}  "/>      
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Start Date Time">
+                            <apex:outputField value="{!acc2.StartDateTime}"/>   
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="End Date Time">
+                            <apex:outputField value=" {!acc2.EndDateTime}"/>   
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Description">
+                            <apex:outputField value="{!acc2.Description}"/>   
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlock>
+            </div>  
+            
+            
+            <div id="notesContent_Id" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="notesItem_Id">
+                <apex:pageBlock title="Open Notes" id="cases3" >
+                    <apex:pageBlockButtons location="top">   
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Refresh"  action="{!Refresh}"/>  <!-- action="https://c.ap4.visual.force.com/apex/newPatient"/>-->
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" onclick="showFullSpinner();" value="Schedule Note"/>  <!-- action="https://c.ap4.visual.force.com/apex/newPatient"/>-->
+                    </apex:pageBlockButtons>
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All7"  />
+                    </div>
+                    <apex:pageBlockTable value="{!openNoteList}" var="acc" html-cid="casesTable7" id="table7">
+                        <apex:column style="align:left; width: 7rem;" headerValue="Action" >
+                            
+                            <apex:commandLink action="{!ViewDeal}" onclick="if(!confirm('Are you sure?')) return false;">View
+                                <apex:param value="{!acc.Id}" name="idToDel" assignTo="{!dealId}"/> |
+                            </apex:commandLink>
+                            <apex:commandLink action="{!EditDeal}" onclick="if(!confirm('Are you sure?')) return false;">Edit
+                                <apex:param value="{!acc.Id}" name="idToDel" assignTo="{!dealId}"/>
+                            </apex:commandLink>
+                        </apex:column>  
+                        <apex:column style="align:left" headerValue="Title">
+                            <apex:outputField value="{!acc.Title}"/>    
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Last Modified">
+                            <apex:outputField value="{!acc.OwnerId}"/>    
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Created By">
+                            <apex:outputField value="{!acc.ParentId}"/>    
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlock><br />
+                
+                <apex:pageBlock title="Notes History" >
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All8"  />
+                    </div>
+                    <apex:pageBlockTable value="{!ClosedNoteList }" var="acc" html-cid="casesTable8" id="table8">
+                        <apex:column style="align:left; width: 7rem;" headerValue="Action" >
+                            
+                            <apex:commandLink action="{!ViewDeal}" onclick="if(!confirm('Are you sure?')) return false;">View
+                                <apex:param value="{!acc.Id}" name="idToDel" assignTo="{!dealId}"/> |
+                            </apex:commandLink>
+                            <apex:commandLink action="{!EditDeal}" onclick="if(!confirm('Are you sure?')) return false;">Edit
+                                <apex:param value="{!acc.Id}" name="idToDel" assignTo="{!dealId}"/>
+                            </apex:commandLink>
+                        </apex:column>  
+                        <apex:column style="align:left" headerValue="Title">
+                            <apex:outputField value="{!acc.Title}"/>    
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Last Modified">
+                            <apex:outputField value="{!acc.OwnerId}"/>    
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Created By">
+                            <apex:outputField value="{!acc.ParentId}"/>    
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlock> 
+            </div> 
+            
+            <!-- Create Group Task Modal -->  
+            <div>
+                <apex:outputPanel rendered="{!isGrouptask}" id="groupTaskModal" >
+                    <div class="demo-only" >
+                        <div role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                            <div class="slds-modal__container">
+                                <div class="slds-modal__header" style="background: #16325c; color: white">
+                                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate" style="background: #16325c; color: white" column ="1">Create Group Task</h2>
+                                </div>
+                                <div class="slds-modal__content slds-p-around_medium" >
+                                    <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+                                        <apex:repeat value="{!$ObjectType.nu_dse__Group_Task__c.FieldSets.nu_dse__CreateGroupTask}" var="f"> 
+                                            <div class="slds-p-horizontal--small slds-p-top_medium  slds-size_1-of-2">
+                                                <label class="slds-form-element__label" for="text-input-id-1">{!f.Label}</label>
+                                            </div>
+                                            <div id="grouptaskInput_Id" class="slds-p-horizontal--small slds-p-top_medium slds-form-element slds-size_1-of-2">
+                                                <apex:outputPanel rendered="{!groupView == 'New' || groupView == 'Edit'}" >
+                                                    <!--<div>
+                                                            <label class="slds-form-element__label" for="text-input-id-1">{!f.Label} </label>
+                                                        </div>-->
+                                                    <div class="slds-form-element__control">
+                                                        <div>
+                                                            <apex:inputField value="{!createGroupTask[f.fieldPath]}" label="{f.Label}" styleClass="field-style required-{!OR(f.required, f.dbrequired)}" / >
+                                                            </div>
+                                                        </div>
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!groupView == 'View'}">
+                                                        <apex:outputField value="{!createGroupTask[f.fieldPath]}" label="{f.Label}"  /> 
+                                                    </apex:outputPanel>
+                                                </div>
+                                            </apex:repeat>
+                                      <apex:inputfile value="{!myfile.body}" filename="{!myfile.Name}" />  </div>
+                                        <apex:outputPanel rendered="{!groupView != 'New'}">
+                                            <div class="slds-tabs--default" >
+                                                <ul class="slds-tabs--default__nav" role="tablist" style="background: #16325c;" >
+                                                    
+                                                    <li class="slds-tabs--default__item slds-text-heading--label slds-active" title="Notes" role="presentation" style="color: white;">
+                                                        <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="NotesContent_Id" id="Notes_Id">Notes</a>
+                                                    </li>
+                                                    <li class="slds-tabs--default__item slds-text-heading--label" title="Attachments" role="presentation" style="color: white;">
+                                                        <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="true" aria-controls="AttachmentsContent_Id" id="attachments_Id">Attachments</a>
+                                                    </li>
+                                                    <li class="slds-tabs--default__item slds-text-heading--label" title="History" role="presentation" style="color: white;">
+                                                        <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="true" aria-controls="Historycontent_Id" id="History_Id">History</a>
+                                                    </li>
+                                                </ul>
+                                                <div id="NotesContent_Id" class="slds-tabs--default__content slds-show" role="tabpanel" aria-labelledby="Notes_Id">
+                                                    <div align="center">
+                                                        <apex:outputPanel id="NewNotesID">
+                                                            <apex:outputPanel rendered="{!!NewNote}">
+                                                                <apex:commandButton reRender="NewNotesID" styleClass="slds-button" style="padding:0px 16px;color:white !important;background: Green !important;" title="New"  action="{!CreateNote}" value="New" /><br/><br/>
+                                                            </apex:outputPanel>
+                                                            <apex:outputPanel rendered="{!NewNote}">
+                                                                <apex:pageBlock >
+                                                                    <apex:pageblockSection >
+                                                                        Title <apex:inputText title="Title" value="{!Titles}" /> <br/>
+                                                                        Body  <apex:inputText title="Body" value="{!Bd}" /> 
+                                                                        <apex:commandButton styleClass="slds-button" style="padding:0px 16px;color:white !important;background: Green !important;"  value="Save Note" action="{!CreateNotesSave}" reRender="NewNotesID"/>
+                                                                        <apex:commandButton styleClass="slds-button" style="padding:0px 16px;color:white !important;background: Green !important;" value="Cancel Note" immediate="true"  action="{!cancelNotes}" reRender="NewNotesID" />
+                                                                    </apex:pageblockSection>
+                                                                </apex:pageBlock><br/><br/>
+                                                            </apex:outputPanel>
+                                                        </apex:outputPanel>
+                                                    </div>
+                                                      <!-- add table -->
+                                                      <apex:pageBlock >
+                                                      <apex:pageBlockTable id="positions" value="{!GroupTaskNoteList}" var="Position">                                                       
+                                                        <apex:column value="{!Position.Title }"/>
+                                                        <apex:column value="{!Position.Body}"/>
+                                                        <apex:column value="{!Position.CreatedById}"/>
+                                                        <apex:column value="{!Position.CreatedDate}"/>
+                                                      </apex:pageBlockTable>
+                                                      </apex:pageBlock>
+                                                    <!-- add table -->
+                                                    </div>
+                                                </div> 
+                                                <div id="AttachmentsContent_Id" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="attachments_Id">
+                                                    <table class="slds-table slds-table--bordered slds-table--fixed-layout slds-table--cell-buffer slds-no-row-hover">
+                                                        <thead> 
+                                                            <tr class="slds-text-title--caps"><td style="width:20%">Action</td>
+                                                                <td style="width:30%">Name</td>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="notesTbodyId"><tr class="slds-table-show"><td colspan="2" data-label="NoRecordMsg"><div class="slds-truncate slds-text-align--center">No record(s) found.
+                                                            </div>
+                                                            </td></tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                 <div id="Historycontent_Id" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="History_Id">
+                                                    <apex:pageBlock >
+                                                      <apex:pageBlockTable id="positions" value="{!GroupTaskHistoryList}" var="Position">                                                       
+                                                        <apex:column value="{!Position.CreatedDate}"/>
+                                                        <apex:column value="{!Position.CreatedById}"/>
+                                                        <apex:column value="{!Position.Field}"/>
+                                                      </apex:pageBlockTable>
+                                                      </apex:pageBlock>
+                                                </div>   
+                                            
+                                        </apex:outputPanel>
+                                    </div>
+                                    <div class="slds-modal__footer" style="background: #16325c; color: white">
+                                        <apex:commandButton styleClass="slds-button" style="padding:0px 16px;color:white !important;background: Green !important;margin: 5px;" value="Cancel" immediate="true"  action="{!cancelGroupTaskModal}"/>
+                                        <apex:outputPanel rendered="{!groupView != 'View'}">
+                                            <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;margin:5px" value="Save Group task" onclick="saveGroupTaskModal();"/>
+                                            <!-- <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;margin:5px" immediate="false" value="Cancel Group Task"  action="{!cancelGroupTaskModal}"/> -->
+                                        </apex:outputPanel>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-backdrop slds-backdrop_open"></div>
+                        </div>
+                    </apex:outputPanel>
+                    
+
+                </div>
+                
+                <!-- Schedule Task Modal -->
+                <div >
+                    <apex:outputPanel rendered="{!istask}" id="taskModal">
+                        <div class="demo-only" >
+                            <div role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                                <div class="slds-modal__container">
+                                    <div class="slds-modal__header" style="background: #16325c; color: white">
+                                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate" style="background: #16325c; color: white" column ="1">Schedule Task</h2>
+                                    </div>
+                                    <div class="slds-modal__content slds-p-around_medium" >
+                                        <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+                                            <apex:repeat value="{!$ObjectType.task.FieldSets.nu_dse__Activity_Tab_Edit}" var="f"> 
+                                                <div class="slds-size_1-of-2">
+                                                    <label class="slds-form-element__label" for="text-input-id-1">{!f.Label}</label>
+                                                </div>
+                                                <div class="slds-size_1-of-2">
+                                                    <apex:outputPanel rendered="{!taskView == 'New' || taskView == 'Edit'}">
+                                                        <apex:inputField value="{!scheduleTask[f.fieldPath]}" label="{f.Label}"  required="false" /> 
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!taskView == 'View'}">
+                                                        <apex:outputField value="{!scheduleTask[f.fieldPath]}" label="{f.Label}" /> 
+                                                    </apex:outputPanel>
+                                                </div>
+                                            </apex:repeat>
+                                        </div>
+                                        <apex:outputPanel rendered="{!taskView != 'New'}">
+                                            <div id="NotesContent_Id" class="slds-tabs--default__content slds-show" role="tabpanel" aria-labelledby="Notes_Id">
+                                                
+                                            </div>
+                                        </apex:outputPanel>
+                                    </div>
+                                    <div class="slds-modal__footer" style="background: #16325c; color: white">
+                                        <apex:outputPanel rendered="{!taskView != 'View'}">
+                                            <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;margin:5px" value="Save" action="{!saveTaskModal}"/>
+                                        </apex:outputPanel>
+                                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;margin:5px" immediate="true" value="Cancel"  action="{!cancelTaskModal}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-backdrop slds-backdrop_open"></div>
+                        </div>
+                    </apex:outputPanel>
+                </div>
+                <!-- -->
+                <!-- Schedule Event Modal -->    
+                <div >
+                    <apex:outputPanel rendered="{!isevent}" id="eventModal">
+                        <div class="demo-only" >
+                            <div role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                                <div class="slds-modal__container">
+                                    <div class="slds-modal__header" style="background: #16325c; color: white">
+                                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate" style="background: #16325c; color: white" column ="1">Schedule Event</h2>
+                                    </div>
+                                    <div class="slds-modal__content slds-p-around_medium" >
+                                        <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+                                            <apex:repeat value="{!$ObjectType.event.FieldSets.nu_dse__Activity_Tab_Event_Fields}" var="f"> 
+                                                <div class="slds-size_1-of-2">
+                                                    <label class="slds-form-element__label" for="text-input-id-1">{!f.Label}</label>
+                                                </div>
+                                                <div class="slds-size_1-of-2">
+                                                    <apex:outputPanel rendered="{!eventView  == 'New' || eventView  == 'Edit'}">
+                                                        <apex:inputField value="{!scheduleEvent[f.fieldPath]}" label="{f.Label}" required="true"/> 
+                                                    </apex:outputPanel>
+                                                    <apex:outputPanel rendered="{!eventView == 'View'}">
+                                                        <apex:outputField value="{!scheduleEvent[f.fieldPath]}" label="{f.Label}" /> 
+                                                    </apex:outputPanel>
+                                                </div>
+                                            </apex:repeat>
+                                        </div>
+                                        <apex:outputPanel rendered="{!eventView != 'New'}">
+                                            <div class="slds-tabs--default" >
+                                                <div id="NotesContent_Id" class="slds-tabs--default__content slds-show" role="tabpanel" aria-labelledby="Notes_Id">
+                                                </div>
+                                            </div>
+                                        </apex:outputPanel>
+                                    </div>
+                                    <div class="slds-modal__footer" style="background: #16325c; color: white">
+                                        <apex:outputPanel rendered="{!groupView != 'View'}">
+                                            <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;margin:5px" value="Save" action="{!saveeventModal}"/>
+                                        </apex:outputPanel>
+                                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;margin:5px" immediate="true" value="Cancel"  action="{!canceleventModal}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-backdrop slds-backdrop_open"></div>
+                        </div>
+                    </apex:outputPanel>
+                </div>
+                <div id="attorneyNotesContent_Id" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="attorneyNotesItem_Id">
+                    <apex:pageBlock title="The Work Is in Progress....."  >
+                        <apex:pageMessage severity="Error" summary="Attorney Notes Currently Unavailable." strength="1"></apex:pageMessage>
+                        
+                    </apex:pageBlock> 
+                </div>  
+            </div>
+            <apex:actionFunction name="SaveGroupTaskValue" action="{!saveGroupTaskModal}" rendered="thePage" oncomplete="hideFullSpinner(); documentReady();"/>
+    </apex:form>
+    <script type="text/javascript">  
+        /*SLDS Tabs JS*/
+        j$('.slds-tabs--default__link,.slds-tabs--scoped__link').click(function() {
+            
+            changeSettingsTab(j$(this).attr('id'));
+            
+        });
+        /*SLDS Tabs JS*/
+        
+        function isFormValidate_ScriptSettings(panelIdToCheck) {
+                
+            var parentElement = document.querySelector('#'+panelIdToCheck);
+            var requiredFieldsCount = parentElement.querySelectorAll(".required-true");
+            var returnElement = true;
+            for(var fieldCount = 0; fieldCount < requiredFieldsCount.length; fieldCount++) {
+                
+                var formElement = requiredFieldsCount[fieldCount];
+                console.log('****** fieldCount',fieldCount );
+                console.log('****** formElement ',formElement.value );
+                if(!formElement.value || formElement.value == null || formElement.value == '' || formElement.value < 0 || formElement.value == 0.00) {
+                    
+                    formElement.className += ' fieldRequired';
+                    console.log('****** formElement.className ',formElement.className );
+                    returnElement = false;
+                } else if(formElement.classList.contains('fieldRequired')) {
+                    
+                    formElement.className = ' required-true';
+                }
+            }
+            console.log('****** returnElement',returnElement);
+            return returnElement;
+        }
+        function saveGroupTaskModal() {
+            
+            console.log('$$$$$$');
+            
+            if(isFormValidate_ScriptSettings('grouptaskInput_Id')) {
+                
+                showFullSpinner();
+                SaveGroupTaskValue();
+            } else {
+                 
+                 hideFullSpinner();
+                 showMessage_Toast('Populate the Required field value', true, false);
+            }
+        }
+        function viewGroupTasksValue(grouptaskId) {
+            console.log('grouptaskId---->',grouptaskId);
+            viewGroupTasks(grouptaskId);
+        }
+        function changeSettingsTab (id) {
+            
+            console.log('Id---->',id);
+            j$('#'+id).parent().parent().find('.slds-tabs--default__link,.slds-tabs--scoped__link').attr('aria-selected','false');
+            j$('#'+id).attr('aria-selected','true');
+            j$('#'+id).parent().parent().find('.slds-tabs--default__link,.slds-tabs--scoped__link').attr('tabindex','-1');
+            j$('#'+id).attr('tabindex','0');
+            j$('#'+id).parent().addClass('slds-active').siblings().removeClass('slds-active');
+            j$('#'+id).parent().parent().parent().find('.'+j$('#'+id).parent().parent().parent().find('.slds-tabs--default__content,.slds-tabs--scoped__content')[0].classList[0]).removeClass('slds-show').addClass('slds-hide');
+            j$('#'+id).parent().parent().parent().find('#'+j$('#'+id).attr('aria-controls')).removeClass('slds-hide').addClass('slds-show');            
+            
+        }
+    </script>
+</apex:page>

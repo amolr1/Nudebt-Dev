@@ -1,0 +1,324 @@
+<apex:page controller="testVFClass" showHeader="False" sidebar="false" >
+    <apex:form id="thePage">
+      <!-- Jquery -->  
+        <apex:includeScript value="//code.jquery.com/jquery-1.11.3.min.js" />  
+        <apex:stylesheet value="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />  
+        <!-- DataTable -->  
+        <apex:includeScript value="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js" />  
+        <apex:stylesheet value="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />  
+        <!-- Search Highlight -->  
+        <apex:includeScript value="//bartaz.github.io/sandbox.js/jquery.highlight.js" />  
+        <apex:includeScript value="//cdn.datatables.net/plug-ins/1.10.9/features/searchHighlight/dataTables.searchHighlight.min.js" />  
+        <apex:stylesheet value="//cdn.datatables.net/plug-ins/1.10.9/features/searchHighlight/dataTables.searchHighlight.css" />  
+
+<!--CSS-->
+<style type="text/css">
+  .myClass
+  {
+    color:white !important;
+    background: Green !important;
+    float: right;
+  }
+ .dataTables_length
+  {
+    padding-bottom:15px;
+    margin-top: -20px;
+  }
+  .mainTitle
+  {
+    color: #f3f3ec !important;
+  }
+  .pbHeader 
+   {
+     background: #16325c !important;
+   }
+</style>
+
+  <script type="text/javascript">  
+  
+        var j$ = jQuery.noConflict();
+        
+        
+        j$(document).ready(function() {
+          
+          var casesTable1 = j$('[cid$="casesTable1"]').parent('table').eq(0).DataTable({  
+          
+            //enables results highlight  
+            searchHighlight: true,  
+            
+            //sets record lengths to show in picklist  
+            aLengthMenu: [  
+              [10, 25, 50, 100],  
+              [10, 25, 50, 100]  
+            ], 
+             
+            "iDisplayLength": 10,  
+            
+            //adds copy, print buttons...  
+            dom: 'lBrtip', //l=length, B=buttons, f=filter(search), r=processing, t=the table, I=table summary, p=page controls  
+            buttons: [],  
+          });
+          
+          var casesTable2 = j$('[cid$="casesTable2"]').parent('table').eq(0).DataTable({  
+          
+            //enables results highlight  
+            searchHighlight: true,  
+            
+            //sets record lengths to show in picklist  
+            aLengthMenu: [  
+              [10, 25, 50, 100],  
+              [10, 25, 50, 100]  
+            ],  
+            
+            "iDisplayLength": 10,  
+            
+            //adds copy, print buttons...  
+            dom: 'lBrtip', //l=length, B=buttons, f=filter(search), r=processing, t=the table, I=table summary, p=page controls  
+            buttons: [],  
+          });  
+          
+          j$("#table1, #table2").dataTable({  
+          
+            "bPaginate": false,  
+          });  
+          
+          var oTable0 = j$("#table1, #table2").dataTable();  
+          j$("#Search_All1, #Search_All2").keyup(function() { 
+           
+            // Filter on the column (the index) of this element  
+            oTable0.fnFilterAll(this.value);  
+          });  
+        });  
+        j$.fn.dataTableExt.oApi.fnFilterAll = function(oSettings, sInput, iColumn, bRegex, bSmart) {  
+        
+          var settings = j$.fn.dataTableSettings;  
+          for (var i = 0; i < settings.length; i++) { 
+           
+            settings[i].oInstance.fnFilter(sInput, iColumn, bRegex, bSmart);  
+          }  
+        };  
+    
+  </script> 
+      <apex:slds />
+        <div class="slds-tabs--default" >
+            <!--<ul class="slds-tabs_default__nav" role="tablist" style="background: #16325c;">
+                <li class="slds-tabs_default__item slds-is-active" title="Group Task" role="presentation" style="color: white;">
+                    <a class="slds-tabs_default__link" href="javascript:void(0);" role="tab1" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item">Group Task</a>
+                </li>
+                <li class="slds-tabs_default__item" title="Tasks" role="presentation" style="color: white;">
+                    <a class="slds-tabs_default__link" href="javascript:void(0);" role="tab2" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">Tasks</a>
+                </li>
+                <li class="slds-tabs_default__item" title="Events" role="presentation" style="color: white;">
+                    <a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">Events</a>
+                </li>
+                <li class="slds-tabs_default__item" title="Notes" role="presentation" style="color: white;">
+                    <a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-4" id="tab-default-4__item">Notes</a>
+                </li>
+                <li class="slds-tabs_default__item" title="Attorney Notes" role="presentation" style="color: white;">
+                    <a class="slds-tabs_default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-5" id="tab-default-5__item">Attorney Notes</a>
+                </li>
+            </ul>-->
+            <ul class="slds-tabs--default__nav" role="tablist" style="background: #16325c;" >
+                <li class="slds-tabs--default__item slds-text-heading--label slds-active" title="Group Task" role="presentation" style="color: white;">
+                    <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="groupTaskContent_Id" id="groupTask_Id">Group Task</a>
+                </li>
+                <li class="slds-tabs--default__item slds-text-heading--label" title="Tasks" role="presentation" style="color: white;">
+                    <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="true" aria-controls="tasksContent_Id" id="tasksItem_Id">Tasks</a>
+                </li>
+                <li class="slds-tabs--default__item slds-text-heading--label" title="Events" role="presentation" style="color: white;">
+                    <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-2" aria-selected="true" aria-controls="eventsContent_Id" id="eventsItem_Id">Events</a>
+                </li>
+                <li class="slds-tabs--default__item slds-text-heading--label" title="Notes" role="presentation" style="color: white;">
+                    <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-3" aria-selected="true" aria-controls="notesContent_Id" id="notesItem_Id">Notes</a>
+                </li>
+                <li class="slds-tabs--default__item slds-text-heading--label" title="Attorney Notes" role="presentation" style="color: white;">
+                    <a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-4" aria-selected="true" aria-controls="attorneyNotesContent_Id" id="attorneyNotesItem_Id">Attorney Notes</a>
+                </li>
+            </ul>
+            <div id="groupTaskContent_Id" class="slds-tabs--default__content slds-show" role="tabpanel" aria-labelledby="groupTask_Id">
+                <apex:pageBlock title="Open Group Tasks" id="cases" >
+                    <apex:pageBlockButtons location="top">   
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Refresh"  action="https://c.ap4.visual.force.com/apex/newPatient"/>
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Create Group Task"  action="https://c.ap4.visual.force.com/apex/newPatient"/>
+                    </apex:pageBlockButtons>
+                  
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All1"  />
+                    </div>
+                    
+                    <apex:pageBlockTable value="{!acclist}" var="acc" html-cid="casesTable1" id="table1">
+                        <apex:column style="align:right" headerValue="Action">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Subject">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Due Date">
+                            {!acc.name}     
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Type">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Description">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Status">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="NDS Created By">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="NDS Assigned">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Owner Name">
+                            {!acc.name}
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlock><br />
+                
+                <apex:pageBlock title="Group Tasks History" >
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All2"  />
+                    </div>
+                    <apex:pageBlockTable value="{!acclist}" var="acc" html-cid="casesTable2" id="table2">
+                        <apex:column style="align:right" headerValue="Action">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Subject">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Due Date">         
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Type">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Description">
+                            {!acc.name}
+                        </apex:column>
+                          <apex:column style="align:left" headerValue="Status">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="NDS Created By">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="NDS Assigned">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Owner Name">
+                            {!acc.name}
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlock> 
+            </div>
+            <div id="tasksContent_Id" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tasksItem_Id">
+                <apex:pageBlock title="Open Tasks" id="cases1" >
+                    <apex:pageBlockButtons location="top">   
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Refresh"  action="https://c.ap4.visual.force.com/apex/newPatient"/>
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Schedule Task"  action="https://c.ap4.visual.force.com/apex/newPatient"/>
+                    </apex:pageBlockButtons>
+                    
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All1"  />
+                    </div>
+                    
+                    <apex:pageBlockTable value="{!acclist}" var="acc" html-cid="casesTable1" id="table1">
+                        <apex:column style="align:right" headerValue="Action">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Subject">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Due Date">
+                            {!acc.name}     
+                        </apex:column>
+                          <apex:column style="align:left" headerValue="Status">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Priority">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Description">
+                            {!acc.name}
+                        </apex:column>
+                      
+                        <apex:column style="align:left" headerValue="Created By Name">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Assigned To Name">
+                            {!acc.name}
+                        </apex:column>
+                      </apex:pageBlockTable>
+                </apex:pageBlock><br />
+                
+                <apex:pageBlock title="Tasks History" >
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All2"  />
+                    </div>
+                    <apex:pageBlockTable value="{!acclist}" var="acc" html-cid="casesTable2" id="table2">
+                            <apex:column style="align:right" headerValue="Action">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Subject">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Due Date">
+                            {!acc.name}     
+                        </apex:column>
+                          <apex:column style="align:left" headerValue="Status">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Priority">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Description">
+                            {!acc.name}
+                        </apex:column>
+                      <apex:column style="align:left" headerValue="Created By Name">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Assigned To Name">
+                            {!acc.name}
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlock> 
+            </div>  
+            <div id="eventsContent_Id" class="slds-tabs--default__content slds-show" role="tabpanel" aria-labelledby="eventsItem_Id">
+                Item Three Content
+            </div>
+            <div id="notesContent_Id" class="slds-tabs--default__content slds-show" role="tabpanel" aria-labelledby="notesItem_Id">
+                Item four Content
+            </div>
+            <div id="attorneyNotesContent_Id" class="slds-tabs--default__content slds-show" role="tabpanel" aria-labelledby="attorneyNotesItem_Id">
+                Item five Content
+            </div>
+          </div>
+        </apex:form>
+    <script type="text/javascript">  
+        /*SLDS Tabs JS*/
+        j$('.slds-tabs--default__link,.slds-tabs--scoped__link').click(function() {
+            
+            changeSettingsTab(j$(this).attr('id'));
+            
+        });
+        /*SLDS Tabs JS*/
+        
+        function changeSettingsTab (id) {
+            
+            console.log('Id---->',id);
+            j$('#'+id).parent().parent().find('.slds-tabs--default__link,.slds-tabs--scoped__link').attr('aria-selected','false');
+            j$('#'+id).attr('aria-selected','true');
+            j$('#'+id).parent().parent().find('.slds-tabs--default__link,.slds-tabs--scoped__link').attr('tabindex','-1');
+            j$('#'+id).attr('tabindex','0');
+            j$('#'+id).parent().addClass('slds-active').siblings().removeClass('slds-active');
+            j$('#'+id).parent().parent().parent().find('.'+j$('#'+id).parent().parent().parent().find('.slds-tabs--default__content,.slds-tabs--scoped__content')[0].classList[0]).removeClass('slds-show').addClass('slds-hide');
+            j$('#'+id).parent().parent().parent().find('#'+j$('#'+id).attr('aria-controls')).removeClass('slds-hide').addClass('slds-show');            
+            
+        }
+    </script>
+</apex:page>

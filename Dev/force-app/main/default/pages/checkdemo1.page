@@ -1,0 +1,367 @@
+<apex:page id="thePage" controller="testVFClass" showHeader="False" sidebar="false">
+<apex:form >
+
+    <apex:tabPanel switchType="client" selectedTab="name1" id="theTabPanel"  title="Group Task">
+
+        <apex:tab label="Group Task" name="name1" id="tabOne" style="color: blue;">
+         <apex:pageBlock title="Open Group Tasks" id="cases"  >
+                    <apex:pageBlockButtons location="top">   
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;color: white;" value="Refresh"  action="https://c.ap4.visual.force.com/apex/newPatient"/>
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Create Group Task"  action="https://c.ap4.visual.force.com/apex/newPatient"/>
+                    </apex:pageBlockButtons>
+                  
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All1"  />
+                    </div>
+                    
+                    <apex:pageBlockTable value="{!acclist}" var="acc" html-cid="casesTable1" id="table1">
+                        <apex:column style="align:right" headerValue="Action">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Subject">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Due Date">
+                            {!acc.name}     
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Type">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Description">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Status">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="NDS Created By">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="NDS Assigned">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Owner Name">
+                            {!acc.name}
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlock><br />
+                
+                <apex:pageBlock title="Group Tasks History" >
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All2"  />
+                    </div>
+                    <apex:pageBlockTable value="{!acclist}" var="acc" html-cid="casesTable2" id="table2">
+                        <apex:column style="align:right" headerValue="Action">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Subject">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Due Date">         
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Type">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Description">
+                            {!acc.name}
+                        </apex:column>
+                          <apex:column style="align:left" headerValue="Status">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="NDS Created By">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="NDS Assigned">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Owner Name">
+                            {!acc.name}
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlock> 
+          </apex:tab>
+        
+        
+        
+        <apex:tab label="Task" name="name2" id="tabTwo" >
+                 <apex:pageBlock title="Open Tasks" id="cases1" >
+                    <apex:pageBlockButtons location="top">   
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Refresh"  action="https://c.ap4.visual.force.com/apex/newPatient"/>
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Create Group Task"  action="https://c.ap4.visual.force.com/apex/newPatient"/>
+                    </apex:pageBlockButtons>
+                  
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All1"  />
+                    </div>
+                    
+                    <apex:pageBlockTable value="{!acclist}" var="acc" html-cid="casesTable1" id="tab2" >
+                        <apex:column style="align:right" headerValue="Action">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Subject">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Due Date">
+                            {!acc.name}     
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Status">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Priority">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Description">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Created By Name">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Assigned To Name">
+                            {!acc.name}
+                        </apex:column>
+                      </apex:pageBlockTable>
+                </apex:pageBlock><br />
+                
+                <apex:pageBlock title="Tasks History" >
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All2"  />
+                    </div>
+                    <apex:pageBlockTable value="{!acclist}" var="acc" html-cid="casesTable2" id="table2">
+                       <apex:column style="align:right" headerValue="Action">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Subject">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Due Date">
+                            {!acc.name}     
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Status">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Priority">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Description">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Created By Name">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Assigned To Name">
+                            {!acc.name}
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlock> 
+        </apex:tab>
+        
+        
+        
+      <apex:tab label="Events" name="name3" id="tabThree">
+       <apex:pageBlock title="Open Events" id="cases2" >
+                    <apex:pageBlockButtons location="top">   
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Refresh"  action="https://c.ap4.visual.force.com/apex/newPatient"/>
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Create Group Task"  action="https://c.ap4.visual.force.com/apex/newPatient"/>
+                    </apex:pageBlockButtons>
+                  
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All1"  />
+                    </div>
+                    
+                    <apex:pageBlockTable value="{!acclist}" var="acc" html-cid="casesTable1" id="table1">
+                        <apex:column style="align:right" headerValue="Action">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Subject">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Due Date">
+                            {!acc.name}     
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Start Date Time">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="End Date Time">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Description">
+                            {!acc.name}
+                        </apex:column>
+                     </apex:pageBlockTable>
+                </apex:pageBlock><br />
+                
+                <apex:pageBlock title="Event History" >
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All2"  />
+                    </div>
+                    <apex:pageBlockTable value="{!acclist}" var="acc" html-cid="casesTable2" id="table2">
+                       <apex:column style="align:right" headerValue="Action">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Subject">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Due Date">
+                            {!acc.name}     
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Start Date Time">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="End Date Time">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Description">
+                            {!acc.name}
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlock> 
+            </apex:tab>  
+
+
+
+     <apex:tab label="Notes" name="name4" id="tabFour">
+
+         <apex:pageBlock title="Open Notes" id="cases3" >
+                    <apex:pageBlockButtons location="top">   
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Refresh"  action="https://c.ap4.visual.force.com/apex/newPatient"/>
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Create Group Task"  action="https://c.ap4.visual.force.com/apex/newPatient"/>
+                    </apex:pageBlockButtons>
+                  
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All1"  />
+                    </div>
+                    
+                    <apex:pageBlockTable value="{!acclist}" var="acc" html-cid="casesTable1" id="table1">
+                        <apex:column style="align:right" headerValue="Action">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Type">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Last Modified">
+                            {!acc.name}     
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Created By">
+                            {!acc.name}
+                        </apex:column>
+                        
+                    </apex:pageBlockTable>
+                </apex:pageBlock><br />
+                
+                <apex:pageBlock title="Notes History" >
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All2"  />
+                    </div>
+                    <apex:pageBlockTable value="{!acclist}" var="acc" html-cid="casesTable2" id="table2">
+                    <apex:column style="align:right" headerValue="Action">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Type">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Last Modified">
+                            {!acc.name}     
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Created By">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Owner Name">
+                            {!acc.name}
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlock> 
+    </apex:tab>
+    
+     
+     <apex:tab label="Attoney Notes" name="name5" id="tabFive">
+     
+     <apex:pageBlock title="Attorney Notes" id="cases4" >
+                    <apex:pageBlockButtons location="top">   
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Refresh"  action="https://c.ap4.visual.force.com/apex/newPatient"/>
+                        <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Create Group Task"  action="https://c.ap4.visual.force.com/apex/newPatient"/>
+                    </apex:pageBlockButtons>
+                  
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All1"  />
+                    </div>
+                    
+                    <apex:pageBlockTable value="{!acclist}" var="acc" html-cid="casesTable1" id="table1">
+                        <apex:column style="align:right" headerValue="Action">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Subject">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Due Date">
+                            {!acc.name}     
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Type">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Description">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Status">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="NDS Created By">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="NDS Assigned">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Owner Name">
+                            {!acc.name}
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlock><br />
+                
+                <apex:pageBlock title="Attorney Notes History" >
+                    <div class="dataTables_filter" style="display:inline;float:right;">
+                        <label>Search:</label>  
+                        <input type="text" id="Search_All2"  />
+                    </div>
+                    <apex:pageBlockTable value="{!acclist}" var="acc" html-cid="casesTable2" id="table2">
+                        <apex:column style="align:right" headerValue="Action">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Subject">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Due Date">         
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Type">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Description">
+                            {!acc.name}
+                        </apex:column>
+                          <apex:column style="align:left" headerValue="Status">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="NDS Created By">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="NDS Assigned">
+                            {!acc.name}
+                        </apex:column>
+                        <apex:column style="align:left" headerValue="Owner Name">
+                            {!acc.name}
+                        </apex:column>
+                    </apex:pageBlockTable>
+                </apex:pageBlock> 
+           </apex:tab>
+        </apex:tabPanel>
+
+</apex:form>
+</apex:page>

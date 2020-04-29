@@ -1,0 +1,9 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+	<ltng:require scripts="{!$Resource.GaugeChart}" afterScriptsLoaded="{!c.ctr}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <div class="slds-col slds-size--1-of-1 slds-small-size--1-of-2 slds-medium-size--3-of-4">
+        <canvas aura:id="gaugeMeter" id="gaugeMeter" />
+    </div>
+    
+</aura:component>

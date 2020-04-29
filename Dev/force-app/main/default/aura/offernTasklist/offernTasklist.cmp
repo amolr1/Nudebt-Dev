@@ -1,0 +1,151 @@
+<aura:component controller="SFSPortal_OffernTaskListController" implements="forceCommunity:availableForAllPageTypes" extends="c:abstractServer" access="public">
+    <aura:attribute name="offerList" type="List" access="public" default="[]"/>
+    <aura:attribute name="offerListToDisplay" type="List" access="public" default="[]"/>
+    <aura:attribute name="offerFieldsetFields" type="List" default="[]" access="public"/>
+    <aura:attribute name="offerListViewFieldset" type="List" default="[]" access="public"/>
+    <aura:attribute name="program" type="Map" default="{'sobjectType': 'nu_dse__Program__c'}" access="public"/>
+    <aura:attribute name="isInit" type="Boolean" default="false" access="public"/>
+    <aura:attribute name="isOfferDecision" type="Boolean" default="false" access="public"/>
+    <aura:attribute name="toRenderModal" type="String" default="" access="public" />
+    <aura:attribute name="offerInstance" type="Map" default="{'sobjectType': 'nu_dse__Offer__c'}" access="public"/>
+    <aura:attribute name="status" type="String" access="public"/>
+    <aura:attribute name="isModalOpen" type="Boolean" access="public" default="false"/>
+    
+    <aura:attribute name="clientTaskWrapper" type="Map" access="public" default="{}"/>
+    <aura:attribute name="taskInfo" type="Map" default="{}"/> 
+    
+    <aura:attribute name="tasksToDisplay" type="List" access="public" default="[]" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="actionOfferEvent" event="c:selectedRecordEvt" action="{!c.handleAction}" />
+    <aura:handler name="actionTaskEvent" event="c:selectedRecordEvt" action="{!c.taskAction}" />
+    
+    
+    <div class="slds-section slds-is-open">
+        <div class="slds-wrap slds-border_bottom custom-title_container">
+            <span class="custom-title_text" style="color:Red;">Notification Alert!</span>
+            <span class="custom-title_text"> Your action is needed on the following tasks:</span>
+        </div>
+        <div style="margin-top:-15px;">
+            <br/>
+        </div>
+        <div aria-hidden="false" class="slds-section__content custom-layout" >
+            <lightning:layout class="slds-wrap">
+                <!--Offers -->
+                <aura:iteration items="{!v.offerListToDisplay}" var="offerInstance" indexVar="index">
+                    <lightning:layoutItem size="12" smallDeviceSize="12" mediumDeviceSize="12" largeDeviceSize="12">
+                        <div class="task-card">
+                            <lightning:layout multipleRows="true">
+                                <aura:iteration items="{!v.offerListViewFieldset}" var="columnHeader">
+                                    <aura:if isTrue="{!columnHeader.fieldLabel != 'TradeLine'}">
+                                        <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="4" largeDeviceSize="3" class="slds-form-layout__custom_right slds-align_absolute-center">
+                                            <div class="slds-form-element">
+                                                <aura:if isTrue="{!columnHeader.fieldLabel == 'Current Creditor'}">
+                                                    <label style="font-family:Prompt-Regular;font-size: 18px;font-color:#000000">
+                                                        <span>Creditor</span>
+                                                    </label>
+                                                </aura:if>
+                                                <aura:if isTrue="{!columnHeader.fieldLabel == 'Original Balance'}">
+                                                    <label style="font-family:Prompt-Regular;font-size: 18px;font-color:#000000">
+                                                        <span>Debt Balance</span>
+                                                    </label>
+                                                </aura:if>
+                                                <aura:if isTrue="{!columnHeader.fieldLabel == 'Offer Amount'}">
+                                                    <label style="font-family:Prompt-Regular;font-size: 18px;font-color:#000000">
+                                                        <span>Settlement Offer</span>
+                                                    </label>
+                                                </aura:if>
+                                                <div class="slds-form-element__control" style="font-family:Prompt-Regular;font-size: 20px;font-color:#000000">
+                                                    <b><c:dynamicCell dataCellList="{!columnHeader}" dataRowMap="{!offerInstance}"/></b>
+                                                </div>
+                                            </div>
+                                        </lightning:layoutItem>
+                                    </aura:if>
+                                </aura:iteration>
+                                <lightning:layoutItem size="12" smallDeviceSize="6" mediumDeviceSize="12" largeDeviceSize="3" >
+                                    <div class="slds-form-layout__custom slds-align_absolute-center" style="padding:15.5px;">
+                                        <aura:if isTrue="{!and(offerInstance.offerCriteriaMet, v.isOfferDecision)}"> <!--  offerCriteriaMet first patment date > current date and check for 5 days only  5 days of current date -->
+                                            <aura:if isTrue="{!v.isOfferDecision}">
+                                                <lightning:button aura:id="reviewOfferbtn_offerList" variant="neutral" name="{!index}" label="Review Offer" onclick="{! c.reviewForApproval }" class="custom-button_review"/>
+                                            </aura:if>
+                                            <aura:set attribute="else">
+                                                <aura:if isTrue="{!offerInstance.offerMoreInfo}">
+                                                    <lightning:button aura:id="viewInfobtn_offerList" name="{!index}" variant="neutral" label="View Info"  onclick="{! c.viewInfo }" class="custom-button_getOfferInfo"/>
+                                                </aura:if>
+                                            </aura:set>
+                                        </aura:if>
+                                    </div>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                        </div>
+                    </lightning:layoutItem>
+                </aura:iteration>
+                <!--End of Offers-->
+                
+                
+                <!--<aura:iteration items="{!v.tasksToDisplay}" var="taskInstance" indexVar="index">-->
+                    <lightning:layoutItem class="slds-p-around_x-small" size="12" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="3" >
+                        <div class="task-card">
+                            <lightning:layout class="slds-wrap">
+                                <!--<aura:iteration items="{!v.clientTaskWrapper.listViewFields }" var="columnHeader">-->
+                                    <lightning:layoutItem size="12" class="slds-m-bottom_x-small">
+                                        <div class="slds-form-element">
+                                            <!--<aura:if isTrue="{!and(equals(taskInstance.Call_Type__c, 'NSF'), v.clientTaskWrapper.isRescheduleNSF)}">-->
+                                           <aura:if isTrue="true">    
+                                            <div style="color:white;background: red;">URGENT</div>
+                                                <aura:set attribute="else">
+                                                    <br />
+                                                </aura:set>
+                                            </aura:if>
+                                            <label style="font-family:Prompt;font-size: 17px;font-color:#2c2e33">Your Task:</label> <!-- {!columnHeader.fieldLabel} -->
+                                            <div style="font-family:Prompt;font-size: 20px;font-color:#2c2e33">
+                                                <b>
+                                                    <!--<c:dynamicCell dataCellList="{!columnHeader}" dataRowMap="{!taskInstance}"/>-->
+                                                </b>
+                                            </div>
+                                        </div>
+                                    </lightning:layoutItem>
+                                <!--</aura:iteration>-->
+                                <lightning:layoutItem size="12" class="slds-m-top_x-small">
+                                    <!--<aura:if isTrue="{!and(equals(taskInstance.Call_Type__c, 'NSF'), v.clientTaskWrapper.isRescheduleNSF)}">-->
+                                    	<aura:if isTrue="true">
+                                        <lightning:button variant="base" name="{!index}" label="" title="Reschedule Now" onclick="{! c.rescheduleNow }" class="custom-button_reschedule">
+                                            <!--<span style="color:yellow">URGENT</span><br/>-->
+                                            <span>Reschedule Now</span>
+                                        </lightning:button>
+                                        <aura:set attribute="else">
+                                            <lightning:button variant="base" name="{!index}" label="Get More Info" title="Get More Info" onclick="{! c.getMoreInfo }" class="custom-button_getInfo" >
+                                                <span>Get More Info</span>
+                                            </lightning:button>
+                                        </aura:set>
+                                    </aura:if>
+                                </lightning:layoutItem>
+                            </lightning:layout>
+                        </div>
+                    </lightning:layoutItem>
+                <!--</aura:iteration>-->
+            </lightning:layout>
+        </div>
+        <!--<div style="font-family:Prompt;font-size: 17px;font-color:#2c2e33;text-align:center;">
+            <c:pagination allData="{!v.clientTaskWrapper.taskList}" data="{!v.tasksToDisplay}" pageSize="4"/>
+        </div>-->
+    </div>
+    <!--</aura:if>-->
+    <aura:if isTrue="{!v.isModalOpen}">
+        <c:customModal header="Task Info" modalSize="slds-modal_small">
+            <aura:set attribute="body">
+                <div style="text-align:center;background: lightyellow">
+                    As you are still within the first year of your program, you may have questions about the program or questions about the status of your accounts. If so feel free to call us. A member of our Client Service Team will be happy to answer any questions you may have.
+                    <br />
+                    Our hours of operation are Monday-Friday {!v.taskInfo.portfolio.Business_Hours__c},  {!v.taskInfo.portfolio.Support_Phone_Number__c}. 
+                </div>
+                
+            </aura:set>
+            <aura:set attribute="footer">
+                <lightning:button label="Close" variant="brand" onclick="{!c.cancelModel}"/>
+            </aura:set>
+        </c:customModal>
+    </aura:if>
+    
+    
+</aura:component>

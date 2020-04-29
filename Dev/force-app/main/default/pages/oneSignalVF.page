@@ -1,0 +1,28 @@
+<apex:page standardStylesheets="false" showHeader="false" sidebar="false">
+    
+    <apex:includeScript value="{!$Resource.OneSignalJavascript}"/>
+
+    <style>
+    .nav { 
+        display: none !important; 
+    }
+    </style>
+    
+    <script>
+        function oneSignalNotification(oneSignal) {
+            alert('oneSignal:'+oneSignal);
+            console.log(oneSignal);
+        }
+        window.oneSignalNotification = function(oneSignal) {
+            alert('oneSignal:'+oneSignal);
+            console.log(oneSignal);
+        }
+        window.gonative_onesignal_info = function(info){
+            var oneSignal = JSON.stringify(info);
+            alert('OneSignal Info:'+oneSignal);
+            if (oneSignal) {
+                window.oneSignalNotification(oneSignal);
+            }
+        }
+    </script>
+</apex:page>

@@ -1,0 +1,184 @@
+<apex:page controller="testVFClass" showHeader="False" sidebar="false">
+<apex:slds />
+<apex:form >
+<!-- Jquery -->  
+<apex:includeScript value="//code.jquery.com/jquery-1.11.3.min.js" />  
+<apex:stylesheet value="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />  
+<!-- DataTable -->  
+<apex:includeScript value="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js" />  
+<apex:stylesheet value="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />  
+<!-- Search Highlight -->  
+<apex:includeScript value="//bartaz.github.io/sandbox.js/jquery.highlight.js" />  
+<apex:includeScript value="//cdn.datatables.net/plug-ins/1.10.9/features/searchHighlight/dataTables.searchHighlight.min.js" />  
+<apex:stylesheet value="//cdn.datatables.net/plug-ins/1.10.9/features/searchHighlight/dataTables.searchHighlight.css" />  
+
+<!--CSS-->
+<style type="text/css">
+  .myClass
+  {
+    color:white !important;
+    background: Green !important;
+    float: right;
+  }
+ .dataTables_length
+  {
+    padding-bottom:15px;
+    margin-top: -20px;
+  }
+  .mainTitle
+  {
+    color: #f3f3ec !important;
+  }
+  .pbHeader 
+   {
+     background: #16325c !important;
+   }
+</style>
+  <script type="text/javascript">  
+    $(document).ready(function() {  
+      var casesTable1 = $('[cid$="casesTable1"]').parent(  
+        'table').eq(0).DataTable({  
+        //enables results highlight  
+        searchHighlight: true,  
+        //sets record lengths to show in picklist  
+        aLengthMenu: [  
+          [10, 25, 50, 100],  
+          [10, 25, 50, 100]  
+        ],  
+        "iDisplayLength": 10,  
+        //adds copy, print buttons...  
+        dom: 'lBrtip', //l=length, B=buttons, f=filter(search), r=processing, t=the table, I=table summary, p=page controls  
+        buttons: [],  
+      });
+      var casesTable2 = $('[cid$="casesTable2"]').parent(  
+        'table').eq(0).DataTable({  
+        //enables results highlight  
+        searchHighlight: true,  
+        //sets record lengths to show in picklist  
+        aLengthMenu: [  
+          [10, 25, 50, 100],  
+          [10, 25, 50, 100]  
+        ],  
+        "iDisplayLength": 10,  
+        //adds copy, print buttons...  
+        dom: 'lBrtip', //l=length, B=buttons, f=filter(search), r=processing, t=the table, I=table summary, p=page controls  
+        buttons: [],  
+      });  
+      $("#table1, #table2").dataTable({  
+        "bPaginate": false,  
+      });  
+      var oTable0 = $("#table1, #table2").dataTable();  
+      $("#Search_All1, #Search_All2").keyup(function() {  
+        // Filter on the column (the index) of this element  
+        oTable0.fnFilterAll(this.value);  
+      });  
+    });  
+    $.fn.dataTableExt.oApi.fnFilterAll = function(oSettings, sInput,  
+      iColumn, bRegex, bSmart) {  
+      var settings = $.fn.dataTableSettings;  
+      for (var i = 0; i < settings.length; i++) {  
+        settings[i].oInstance.fnFilter(sInput, iColumn, bRegex,  
+          bSmart);  
+      }  
+    };  
+  </script> 
+
+  <apex:pageBlock >
+    <div class="slds">
+      <div  style="background: #16325c !important;">
+        <ul class="slds-tabs " role="tablist" >
+          <li  style="display:inline;color:white" class="slds-tabs--scoped__item slds-tabs--scoped__link slds-active"  title="Group Task">Group Tasks</li> 
+          <li  style="display:inline;color:white" class="slds-tabs--scoped__item slds-tabs--scoped__link "  title="Task">Tasks</li>
+          <li  style="display:inline;color:white" class="slds-tabs--scoped__item slds-tabs--scoped__link "  title="Event">Events</li>
+        </ul>
+      </div>    
+    </div> 
+  </apex:pageBlock>
+  
+  <apex:pageBlock title="Open Group Tasks" id="cases" >
+  <apex:pageBlockButtons location="top">   
+    <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Refresh"  action="https://c.ap4.visual.force.com/apex/newPatient"/>
+    <apex:commandButton styleClass="slds-button myClass" style="padding:0px 16px;" value="Create Group Task"  action="https://c.ap4.visual.force.com/apex/newPatient"/>
+  </apex:pageBlockButtons>
+  
+  <div class="dataTables_filter" style="display:inline;float:right;">
+    <label>Search:</label>  
+    <input type="text" id="Search_All1"  />
+  </div>
+
+  <apex:pageBlockTable value="{!acclist}" var="acc" html-cid="casesTable1" id="table1">
+    <apex:column style="align:right" headerValue="Action">
+      {!acc.name}
+    </apex:column>
+  
+    <apex:column style="align:left" headerValue="Subject">
+      {!acc.name}
+    </apex:column>
+   
+    <apex:column style="align:left" headerValue="Due Date">
+      {!acc.name}     
+    </apex:column>
+   
+    <apex:column style="align:left" headerValue="Type">
+      {!acc.name}
+    </apex:column>
+    
+    <apex:column style="align:left" headerValue="Description">
+      {!acc.name}
+    </apex:column>
+    
+    <apex:column style="align:left" headerValue="NDS Created By">
+      {!acc.name}
+    </apex:column>
+    
+    <apex:column style="align:left" headerValue="NDS Assigned">
+      {!acc.name}
+    </apex:column>
+    
+    <apex:column style="align:left" headerValue="Owner Name">
+      {!acc.name}
+    </apex:column>
+  </apex:pageBlockTable>
+</apex:pageBlock><br />
+
+<apex:pageBlock title="Group Tasks History">
+  <div class="dataTables_filter" style="display:inline;float:right;">
+    <label>Search:</label>  
+    <input type="text" id="Search_All2"  />
+  </div>
+  <apex:pageBlockTable value="{!acclist}" var="acc"  html-cid="casesTable2" id="table2">
+    <apex:column style="align:right" headerValue="Action">
+      {!acc.name}
+    </apex:column>
+  
+    <apex:column style="align:left" headerValue="Subject">
+      {!acc.name}
+    </apex:column>
+   
+    <apex:column style="align:left" headerValue="Due Date">         
+      {!acc.name}
+    </apex:column>
+   
+    <apex:column style="align:left" headerValue="Type">
+       {!acc.name}
+    </apex:column>
+    
+    <apex:column style="align:left" headerValue="Description">
+      {!acc.name}
+    </apex:column>
+    
+    <apex:column style="align:left" headerValue="NDS Created By">
+      {!acc.name}
+    </apex:column>
+    
+    <apex:column style="align:left" headerValue="NDS Assigned">
+      {!acc.name}
+    </apex:column>
+    
+    <apex:column style="align:left" headerValue="Owner Name">
+      {!acc.name}
+    </apex:column>
+  </apex:pageBlockTable>
+</apex:pageBlock> 
+</apex:form> 
+</apex:page>

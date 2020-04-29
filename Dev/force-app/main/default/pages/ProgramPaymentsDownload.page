@@ -1,0 +1,52 @@
+<apex:page lightningStylesheets="true" contentType="application/vnd.ms-excel#{!Program.nu_dse__Account__r.FirstName} {!Program.nu_dse__Account__r.LastName} Escrow.xls" standardController="nu_dse__Program__c" sidebar="false" extensions="ProgramPaymentsExportController">
+    <apex:slds />
+    <apex:form styleClass="slds-card">
+        <apex:pageBlock >
+        <h2 class="header" style="">
+        <div class="header-title-container title">
+            <div class="slds-col">
+            <apex:outputLabel styleClass="slds-card__header-title slds-truncate">Client Name: </apex:outputLabel>
+            <apex:outputText styleClass="slds-card__header-title slds-truncate" value="{!Program.nu_dse__Account__r.FirstName} {!Program.nu_dse__Account__r.LastName}"/>
+            </div>
+        </div>
+        </h2>
+        <apex:actionFunction name="additionalDraft" action="{!additionalDraft}"/>
+        <apex:pageBlockTable styleClass="slds-table slds-table--bordered" id="table" value="{!PaymentWrapperList}" var="PayWrap">
+            <apex:column styleClass="slds-col" value="{!PayWrap.month}" headerValue="Month"/>
+            <apex:column styleClass="slds-col" value="{!PayWrap.monthlyDraft}" headerValue="Monthly Draft"/>
+            <apex:column styleClass="slds-col" value="{!PayWrap.secondmonthlyDraft}" headerValue="Second Monthly Draft" rendered="{!if(Program.nu_dse__Payment_Frequency__c == 'Twice Monthly',True,False)}"/>
+            <apex:column styleClass="slds-col">
+                <apex:facet name="header">
+                    Additional Draft
+                </apex:facet>
+                <apex:inputText value="{!PayWrap.AdditionalDaft}" size="10">
+                    <apex:actionSupport event="onchange" action="{!additionalDraft}" reRender="table">
+                        <apex:param name="month" assignTo="{!ChangedMonth}" value="{!PayWrap.month}"/>
+                    </apex:actionSupport>
+                </apex:inputText>
+            </apex:column>
+            <apex:column styleClass="slds-col">
+                <apex:facet name="header">
+                    New Settlement
+                </apex:facet>
+                <apex:inputText value="{!PayWrap.NewSettlement}" size="10">
+                    <apex:actionSupport event="onchange" action="{!additionalDraft}" reRender="table">
+                        <apex:param name="month" assignTo="{!ChangedMonth}" value="{!PayWrap.month}"/>
+                    </apex:actionSupport>
+                </apex:inputText>
+            </apex:column>
+            <apex:repeat value="{!OfferNames}" var="offer">
+                <apex:column styleClass="slds-col">
+                    <apex:facet name="header">
+                        {!offer}
+                    </apex:facet>
+                    <apex:outputText value="{!if(contains(PayWrap.keyValues,offer),PayWrap.SettlementOfferAmounts[offer],'')}"/>
+                </apex:column>
+            </apex:repeat>
+            <apex:column styleClass="slds-col" value="{!PayWrap.RunningBalance}" headerValue="Running Balance"/>
+            <apex:column styleClass="slds-col" value="{!PayWrap.AvailableFunds}" headerValue="Funds Available from Montly Draft"/>
+        </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+
+</apex:page>

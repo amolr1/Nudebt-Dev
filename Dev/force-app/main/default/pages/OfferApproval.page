@@ -1,0 +1,42 @@
+<apex:page standardController="nu_dse__Offer__c" recordSetVar="offr">
+    <script>
+
+		function openPopup(id)
+		{
+			var newWin=window.open('Popup','{!$Page.Popup}?id='	+ id,
+					'height=300 ,width=500, left=100,top=100, resizable=no, scrollbars=yes,toolbar=no,statu=-no')
+
+		if (window.focus)
+            {
+				newWin.focus();
+			}
+
+
+
+			return false;
+
+</script>
+   
+<apex:pageBlock >
+
+  
+
+<apex:pageblockTable value="{!offr}" var="ofr">
+<apex:column headerValue="Action">
+   
+	<apex:outputLink title="select status in a popup window" onclick="return openPopup('{!ofr.id}')">select offer</apex:outputLink>
+ </apex:column>
+    
+<apex:column value="{!ofr.Account_Name__c}"/>
+    <apex:column value="{!ofr.IsAttorney__c}"/>
+<!--<apex:column value="{!ofr.Attorney_Settlement_Approval_Status__c}"/>
+<apex:column value="{!ofr.DNL_Negotiations_Approval_Status__c}"/>
+    <apex:column value="{!ofr.Timberline_Settlement_Approval_Status__c}"/>-->
+    <apex:column value="{!ofr.nu_dse__Status__c}"/>
+
+
+
+</apex:pageblockTable>
+
+</apex:pageBlock>
+</apex:page>

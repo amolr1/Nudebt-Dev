@@ -1,0 +1,18 @@
+<apex:page standardStylesheets="false" showHeader="false" sidebar="false">
+    <style>
+        img {
+            max-width: 100%;
+            min-width: 300px;
+            height: auto;
+        }
+    </style>
+    <script>
+        function callback(data) { 
+            alert(data);
+            document.getElementById('page').setAttribute('src', 'data:' + data.mimeType + ';' + data.encoding + ', ' + data.image); 
+        }
+    </script>
+    <h1>Document Scanner test</h1> 
+    <p><a href="gonative://documentScanner/scanPage?callback=callback">Scan page</a></p>
+    <p><img id="page" src=""/></p>
+</apex:page>

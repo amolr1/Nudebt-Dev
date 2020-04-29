@@ -1,0 +1,16 @@
+<apex:page controller="AutomatedPaymentOutCtrl">
+    <apex:pageBlock >
+    	<apex:pageBlockSection >
+        	<apex:pageBlockTable value="{!ppmList}" var="ppm">
+                <apex:column headerValue="PROGRAM_UUID" value="{!ppm.PROGRAM_UUID}" />
+                <apex:column headerValue="PROGRAM_NUM" value="{!ppm.PROGRAM_NUM}" />
+                <apex:column headerValue="SCHEDULED_DATE">
+                    <apex:outputText value="{0,date,MM/dd/yyyy}">
+                        <apex:param value="{!ppm.SCHEDULED_DATE}" />
+                    </apex:outputText>
+                </apex:column>
+                <apex:column headerValue="AMOUNT" value="{!ppm.AMOUNT}" />
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>

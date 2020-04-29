@@ -1,0 +1,113 @@
+.THIS.form-layout .forceContentFileCard {
+    width:10rem !important;
+}
+
+.THIS .default-forms-col-span td[colspan="2"] {
+  display: none;
+}
+
+.THIS .default-forms-col-span td[colspan="4"] {
+  display: none;
+}
+
+.THIS .full-title {
+    white-space: normal;
+    word-break: break-all;
+}
+
+/* 
+##Device = Desktops
+##Screen = 1281px to higher resolution desktops
+*/
+
+@media (min-width: 1280px) {
+    .THIS .responsive-default-forms-size {
+        width: 10%;
+    }
+    
+    .THIS .default-forms-col-span td[colspan="4"] {
+        display: table-cell;
+    }
+    .THIS .default-forms-col-span td[colspan="2"] {
+        display: none;
+    }
+}
+
+/* 
+##Device = Laptops, Desktops
+##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 901px) and (max-width: 1279px) {
+    .THIS .responsive-default-forms-size {
+        width: 10%;
+    }
+    .THIS .default-forms-col-span td[colspan="4"] {
+        display: table-cell;
+    }
+    .THIS .default-forms-col-span td[colspan="2"] {
+        display: none;
+    }
+}
+
+/* 
+##Device = Tablets, Ipads (portrait)
+##Screen = B/w 768px to 900px
+*/
+
+@media (min-width: 768px) and (max-width: 900px) {
+    .THIS .responsive-default-forms {
+        display:none !important;
+    }
+    .THIS .responsive-default-forms-size {
+        width: 35%;
+    }
+    .THIS .default-forms-col-span td[colspan="2"] {
+        display: table-cell;
+    }
+    .THIS .default-forms-col-span td[colspan="4"] {
+        display: none;
+    }
+}
+
+
+/* 
+##Device = Low Resolution Tablets, Mobiles (Landscape)
+##Screen = B/w 481px to 767px
+*/
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .THIS .responsive-default-forms {
+        display:none !important;
+    }
+    .THIS .responsive-default-forms-size {
+        width: 35%;
+    }
+    
+    .THIS .default-forms-col-span td[colspan="2"] {
+        display: table-cell;
+    }
+    .THIS .default-forms-col-span td[colspan="4"] {
+        display: none;
+    }
+}
+
+/* 
+##Device = Most of the Smartphones Mobiles (Portrait)
+##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .THIS .responsive-default-forms {
+        display:none !important;
+    }
+    .THIS .responsive-default-forms-size {
+        width: 35%;
+    }
+    .THIS .default-forms-col-span td[colspan="2"] {
+        display: table-cell;
+    }
+    .THIS .default-forms-col-span td[colspan="4"] {
+        display: none;
+    }
+}

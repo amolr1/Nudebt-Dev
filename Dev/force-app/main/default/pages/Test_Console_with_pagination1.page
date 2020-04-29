@@ -1,0 +1,257 @@
+<apex:page controller="testVFClass" showHeader="False" sidebar="false">
+ <apex:slds />
+<apex:form id="check">
+<!-- Jquery -->  
+<apex:includeScript value="//code.jquery.com/jquery-1.11.3.min.js" />  
+<apex:stylesheet value="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" />  
+<!-- DataTable -->  
+<apex:includeScript value="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js" />  
+<apex:stylesheet value="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" />  
+<!-- Search Highlight -->  
+<apex:includeScript value="//bartaz.github.io/sandbox.js/jquery.highlight.js" />  
+<apex:includeScript value="//cdn.datatables.net/plug-ins/1.10.9/features/searchHighlight/dataTables.searchHighlight.min.js" />  
+<apex:stylesheet value="//cdn.datatables.net/plug-ins/1.10.9/features/searchHighlight/dataTables.searchHighlight.css" />  
+
+<!--CSS-->
+<style type="text/css">
+.myClass
+{
+color:white !important;
+background: Green !important;
+float: right;
+}
+.dataTables_length
+{
+padding-bottom:15px;
+margin-top: -20px;
+}
+.mainTitle
+{
+color: #f3f3ec !important;
+}
+.pbHeader 
+{
+ background: #16325c !important;
+}
+.activeTab {background-color:#16325c;
+           tab-color:white;
+           }
+.inactiveTab {background-color:white;
+                color:black;
+                background-image:none}
+
+</style>
+<script type="text/javascript">  
+$(document).ready(function() {  
+  var casesTable = $('[cid$="casesTable"]').parent(  
+    'table').eq(0).DataTable({  
+    //enables results highlight  
+    searchHighlight: true,  
+    //sets record lengths to show in picklist  
+    aLengthMenu: [  
+      [10, 25, 50, 100],  
+      [10, 25, 50, 100]  
+    ],  
+    "iDisplayLength": 10,  
+    //adds copy, print buttons...  
+    dom: 'lBrtip', //l=length, B=buttons, f=filter(search), r=processing, t=the table, I=table summary, p=page controls  
+    buttons: [],  
+  });  
+  $('#table1').dataTable({  
+    "bPaginate": false,  
+  });  
+  var oTable0 = $("#table1").dataTable();  
+  $("#Search_All").keyup(function() {  
+    // Filter on the column (the index) of this element  
+    oTable0.fnFilterAll(this.value);  
+  });  
+});  
+$.fn.dataTableExt.oApi.fnFilterAll = function(oSettings, sInput,  
+  iColumn, bRegex, bSmart) {  
+  var settings = $.fn.dataTableSettings;  
+  for (var i = 0; i < settings.length; i++) {  
+    settings[i].oInstance.fnFilter(sInput, iColumn, bRegex,  
+      bSmart);  
+  }  
+};  
+</script> 
+
+ 
+    <apex:pageBlock >
+        <apex:pageBlockSection >
+            <apex:tabPanel >
+                <apex:tab label="Details" >
+                    <apex:detail relatedList="false" />
+                </apex:tab>
+                <apex:tab label="Group Tasks">
+                    <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Action">Action</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Subject">Subject</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Due Date">Due Date</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Type">Type</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Description">Description</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Status">Status</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="NDS Created By">NDS Created By</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="NDS Assigned">NDS Assigned</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Owener Name"> Owner Name</div>
+                                </th>
+                            </tr>
+                        </thead>
+                       </table>
+                       </apex:tab>
+                <apex:tab label="Tasks">
+                    <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Action">Action</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Subject">Subject</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Due Date">Due Date</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Status">Status</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Priority">Priority</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Status">Status</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Description">Description</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Created By Name">Created By Name</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Assigned to Name"> Assigned to Name</div>
+                                </th>
+                            </tr>
+                        </thead>
+                                 
+                  </table>
+                       </apex:tab>
+                <apex:tab label="Events">
+                <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Action">Action</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Subject">Subject</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Due Date">Due Date</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Start Date">Start Date</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="End Date">End Date</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Description">Description</div>
+                                </th>
+                            </tr>
+                        </thead>
+                 </table>
+                       </apex:tab>
+                <apex:tab label="Notes">
+                    <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Action">Action</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Subject">Subject</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Due Date">Due Date</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Status">Status</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Priority">Priority</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Status">Status</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Description">Description</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Created By Name">Created By Name</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Assigned to Name"> Assigned to Name</div>
+                                </th>
+                            </tr>
+                        </thead>
+                  </table>
+                       </apex:tab>
+                <apex:tab label="Attorney Notes">
+                    <table class="slds-table slds-table_cell-buffer slds-no-row-hover slds-table_bordered">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Action">Action</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Subject">Subject</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Due Date">Due Date</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Status">Status</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Priority">Priority</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Status">Status</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Description">Description</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Created By Name">Created By Name</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Assigned to Name"> Assigned to Name</div>
+                                </th>
+                            </tr>
+                        </thead>
+                  </table>
+                       </apex:tab>
+                     </apex:tabPanel>  
+          </apex:pageBlockSection>
+    </apex:pageBlock>
+  </apex:form>        
+</apex:page>

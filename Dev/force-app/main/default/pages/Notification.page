@@ -1,0 +1,15 @@
+<apex:page standardController="nu_dse__Offer__c" >
+ <!--<apex:form style="height:30px; text-align:right;">-->
+<style type= "text/css">
+        .messageStyle {animation: blink 5s infinite;color: #006400; font-weight: bold; height:40%}
+        @keyframes blink{
+        0%{opacity: 0;}
+        100%{opacity: 1}
+        }
+ </style>
+ <apex:form style="height:30px; text-align: center;">
+  <apex:outputText id="faxFailure" styleClass="messageStyle" value="Please complete the task :Obtain Client Auth before approving the record "></apex:outputText>
+     
+</apex:form>
+     
+     </apex:page>

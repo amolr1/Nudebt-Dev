@@ -1,0 +1,48 @@
+<aura:component controller="SFSPortal_DocumentsController" extends="c:abstractServer" implements="forceCommunity:availableForAllPageTypes">
+    <aura:attribute name="formList" type="List" access="public" default="[]" />
+    <aura:attribute name="documentWrapper" type="Map" access="public" default="{}" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <table class="slds-table slds-table_bordered slds-table_striped slds-table_cell-buffer slds-table_fixed-layout">
+        <thead>
+            <tr class="slds-text-heading_label">
+                <th scope="col"><div class="slds-truncate" title="ID">Title</div></th>
+                <th scope="col" class="responsive-default-forms"><div class="slds-truncate " title="Type">File Type</div></th>
+                <th scope="col" class="responsive-default-forms"><div class="slds-truncate " title="Name">Description</div></th>
+                <th scope="col" class="responsive-default-forms-size" >
+                    <div class="slds-truncate" title="Type">Download</div>
+                </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.documentWrapper.attachmentList}" var="doc">
+                <tr>
+                    <td>
+                        <div class="slds-truncate full-title" title="{!doc.Name}">{!doc.Name}</div>
+                    </td>
+                    <td class="responsive-default-forms"><div class="slds-truncate" title="{!doc.ContentType}">{!doc.ContentType}</div></td>
+                    <td class="responsive-default-forms"><div class="slds-truncate" title="{!doc.Description}">{!doc.Description}</div></td>
+                    <td>
+                        <div class="slds-truncate" title="{!doc.id}">
+                            <a aura:id="fileDownloadclck_defaultForms" href="{!v.documentWrapper.urlKeyPrefix + '/servlet/servlet.FileDownload?file=' + doc.Id}" target="_blank" download="{!doc.Name}" >
+                                <lightning:icon iconName="utility:download" size="x-small" /> 
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </aura:iteration>
+            <aura:if isTrue="{!!v.documentWrapper.attachmentList.length}">
+                <tr class="default-forms-col-span">
+                	<td colspan="2" style="text-align:center;">
+                        <span>No Record(s) Found</span>
+                    </td>
+                    <td colspan="4" style="text-align:center;">
+                        <span>No Record(s) Found</span>
+                    </td>
+                </tr>
+            </aura:if>
+        </tbody>
+    </table>
+    
+</aura:component>

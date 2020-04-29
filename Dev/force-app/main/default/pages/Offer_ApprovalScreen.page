@@ -1,0 +1,59 @@
+<apex:page controller="Offer_ApprovalScreenCtrl" tabStyle="nu_dse__Offer__c">
+    <apex:form id="frm">
+        <apex:sectionHeader title="Approval Request" subtitle="Offer: {!ofr.Name}"/>
+        <apex:pageBlock title="Approve/Reject Approval Request" rendered="{!!isError}">
+            <apex:pageMessages id="errMsg" />
+            <apex:pageBlockButtons location="bottom" rendered="{!showActions}">
+                <apex:commandButton value="Approve" action="{!approve}" reRender="frm" />
+                <apex:commandButton value="Reject" action="{!reject}" reRender="frm" />
+                <apex:commandButton value="Cancel" action="{!cancel}" reRender="frm" />
+            </apex:pageBlockButtons>  
+            <apex:pageBlockSection columns="2">
+                <apex:outputField value="{!ofr.Name}"/>
+                <!--<apex:pageBlockSectionItem >
+<apex:outputLabel >Owner</apex:outputLabel>
+<apex:outputField value="{!ofr.Owner.Name}"/>
+</apex:pageBlockSectionItem>-->
+                <apex:outputField value="{!ofr.nu_dse__TradeLine__c}"/>
+                <apex:outputField value="{!ofr.nu_dse__Program__c}"/>
+                <apex:outputField value="{!ofr.NDS_Creditor_Info__c}"/>
+                <apex:outputField value="{!ofr.Creditor_Name__c}"/>
+                <apex:outputField value="{!ofr.nu_dse__Collection_Agency__c}"/>
+                <apex:outputField value="{!ofr.Notes__c}" />
+                <apex:outputField value="{!ofr.nu_dse__Status__c}"/>
+                <apex:outputField value="{!ofr.nu_dse__Offer_Type__c}"/>
+                <apex:outputField value="{!ofr.Original_Balance__c}"/>
+                <apex:outputField value="{!ofr.nu_dse__Offer_Amount__c}"/>
+                <apex:outputField value="{!ofr.nu_dse__Total_Settlement_with_Fee__c}"/>
+                <apex:outputField value="{!ofr.Settlement__c}"/>
+                <apex:outputField value="{!ofr.nu_dse__Number_of_Payments__c}"/>
+                <apex:outputField value="{!ofr.nu_dse__Counter_Proposal__c}"/>
+                <apex:outputField value="{!ofr.nu_dse__Fee_Re_Occurring_Day__c}"/>
+                <apex:outputField value="{!ofr.nu_dse__Number_of_Fee_payments__c}"/>
+                <apex:outputField value="{!ofr.nu_dse__First_Payment_Date__c}"/>
+                <apex:outputField value="{!ofr.nu_dse__Payment_Re_Occuring_Day__c}"/>
+                <apex:outputField value="{!ofr.nu_dse__Program_Fee__c}"/>
+                <apex:outputField value="{!ofr.nu_dse__Program_Fee_Start_Date__c}"/>
+                <apex:outputField value="{!ofr.nu_dse__Settlement_Contact_Number__c}"/>
+                <apex:outputField value="{!ofr.nu_dse__Settlement_Contact_Person_Name__c}"/>
+                <apex:outputField value="{!ofr.nu_dse__Settlement_Id__c}"/>
+                <apex:outputField value="{!ofr.nu_dse__Settlement_Received__c}"/>
+                <apex:outputField value="{!ofr.nu_dse__Upfront_Amount__c}"/>
+                <apex:outputField value="{!ofr.nu_dse__Valid_Until__c}"/>
+                <apex:outputField value="{!ofr.Admin_Approved__c}"/>
+                <apex:outputField value="{!ofr.CreatedById}"/>
+                <apex:outputField value="{!ofr.LastModifiedBy.Name}"/>
+                <apex:outputField value="{!ofr.Import_Id__c}"/>
+                <apex:outputField value="{!ofr.nu_dse__Processor_Error__c}"/>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >Rejection Reason <font color="red">(Mandatory while Rejection)</font></apex:outputLabel>
+                    <apex:inputField value="{!ofr.Manager_decline_reason__c}"/>
+                </apex:pageBlockSectionItem>
+                <apex:outputText value="" />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock title="Approve/Reject Approval Request" rendered="{!isError}">
+            Invalid Page
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,32 @@
+<apex:component >
+    
+    <apex:form >
+<!--Tab Panel  -->
+   <apex:Tabpanel >   
+     <!--First Tab-->  
+     <apex:tab > title="Group Task">  
+       This is a tab 1. You can add standard component inside also.  
+       <apex:pageBlock title="Standard page block">  
+         This is a pageblock component.  
+         <br/>  
+         <apex:pageBlockSection title="This is a section" collapsible="false">  
+         </apex:pageBlockSection>  
+       </apex:pageBlock>  
+     </apex:tab>  
+     <!--Second Tab -->  
+     <apex:tab title="Tasks">  
+       This is a tab 2  
+     </apex:tab>  
+     <apex:tab title="Events">  
+       This is a tab 2  
+     </apex:tab>    
+     <apex:tab title="Notes">  
+       This is a tab 2  
+     </apex:tab>  
+       <apex:tab title="Attorney Notes">  
+       This is a tab 2  
+     </apex:tab>  
+   </apex:Tabpanel>  
+   </apex:form>     
+
+</apex:component>

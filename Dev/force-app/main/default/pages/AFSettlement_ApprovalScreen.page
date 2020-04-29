@@ -1,0 +1,40 @@
+<apex:page controller="AFSettlement_ApprovalScreenCtrl" tabStyle="nu_dse__Group_Task__c">
+   <apex:form id="frm">
+   <apex:sectionHeader title="Approval Screen" subtitle="Group Task: {!tsk.Name}"/>
+       <apex:pageBlock title="Approve/Reject Approval Request" rendered="{!!isError}">
+           <apex:pageMessages id="errMsg" />
+           <apex:pageBlockButtons location="bottom" rendered="{!showActions}">
+               <apex:commandButton value="Approve" action="{!approve}" reRender="frm" />
+               <apex:commandButton value="Reject" action="{!reject}" reRender="frm" />
+               <apex:commandButton value="Cancel" action="{!cancel}" reRender="frm" />
+           </apex:pageBlockButtons>  
+           <apex:pageBlockSection columns="2">
+               <apex:outputField value="{!tsk.Name}"/>
+               <apex:outputField value="{!tsk.Funds_need_to_be_available_by_date__c}"/>
+               <apex:pageBlockSectionItem >
+                   <apex:outputLabel >Owner</apex:outputLabel>
+                   <apex:outputField value="{!tsk.Owner.Name}"/>
+               </apex:pageBlockSectionItem>
+               <apex:outputField value="{!tsk.Recoup_timeframe__c}"/>
+               <apex:outputField value="{!tsk.Total_fund_required__c}"/>
+               <apex:outputField value="{!tsk.Tradeline_s_to_be_advanced__c}"/>
+               <apex:outputField value="{!tsk.Type_of_Request__c}"/>
+               <apex:outputField value="{!tsk.Were_additional_funds_requested__c}"/>
+               <apex:outputField value="{!tsk.Perfect_Draft_History__c}"/>
+               <apex:outputField value="{!tsk.Settlement_type__c}"/>
+               <apex:outputField value="{!tsk.BBB_Attorney_General_complaint__c}"/>
+               <apex:outputField value="{!tsk.Client_s_total_months_in_program__c}"/>
+               <apex:outputField value="{!tsk.Legal_file_number__c}"/>
+               <apex:outputField value="{!tsk.Advancement_Facilitates_Lit_Settlement__c}"/>
+               <apex:pageBlockSectionItem >
+                   <apex:outputLabel >Rejection Reason <font color="red">(Mandatory while Rejection)</font></apex:outputLabel>
+                   <apex:inputField value="{!tsk.Manager_decline_reason__c}"/>
+               </apex:pageBlockSectionItem>
+               <apex:outputText value="" />
+           </apex:pageBlockSection>
+       </apex:pageBlock>
+       <apex:pageBlock title="Approve/Reject Approval Request" rendered="{!isError}">
+           Invalid Page
+       </apex:pageBlock>
+   </apex:form>
+</apex:page>

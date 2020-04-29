@@ -1,0 +1,100 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" >
+    <!-- RESPONSIVE GRID EXAMPLE -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+KR:700" rel="stylesheet" /> 
+    <div class="slds-wrap slds-border_bottom custom-title_container " style="padding:7px;">
+        <span class="custom-title_text">Document Center > Contracts</span>
+    </div>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_9-of-12 sidepadding">
+          <!-- Downloadable documents -->
+            <div>
+                <table class="slds-table slds-table_cell-buffer documentTable">
+                     <thead>
+                         <tr class="slds-border_bottom">
+                             <th class="col" style="width: 20%">Date</th>
+                             <th class="col" style="width: 45%">Title</th>
+                             <th class="col" style="width: 15%">Size</th>
+                             <th class="col" style="width: 20%; text-align: center">Download</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <tr scope="row" class="slds-border_bottom">
+                             <td>03/02/2020</td>
+                             <td >
+                                <lightning:icon iconName="doctype:pdf" alternativeText="Image file" title="Image" />
+                                <a href="#" class="linktag">Canyon Power Attorney</a>
+                             </td>
+                             <td>5KB</td>
+                             <td class="download"><img src="{!$Resource.svg_DocumentCenter+ '/SVG/Download.svg'}"/></td>
+                         </tr>
+                         <tr scope="row" class="slds-border_bottom">
+                             <td>03/02/2020</td>
+                             <td>
+                                <lightning:icon iconName="doctype:word" alternativeText="Image file" title="Image" />
+                                <a href="#" class="linktag">GCS - Dedicated Account Agreement</a>
+                             </td>
+                             <td>32KB</td>
+                             <td class="download"><img src="{!$Resource.svg_DocumentCenter+ '/SVG/Download.svg'}"/></td>
+                        </tr>
+                     </tbody>
+                </table>
+            </div>
+            
+            
+            <!-- Recently Uploaded Documents -->
+            
+            <div> 
+                <p class="custom-title_subtext">Recent Uploads</p><hr/>
+                <table class="slds-table slds-table_cell-buffer documentTable">
+                     <thead >
+                         <tr class="slds-border_bottom">
+                             <th class="col" style="width: 20%">Date</th>
+                             <th class="col" style="width: 45%">Title</th>
+                             <th class="col" style="width: 15%">Size</th>
+                             <th class="col" style="width: 20%; text-align: center">Download</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <tr scope="row" class="slds-border_bottom">
+                             <td>03/02/2020</td>
+                             <td >
+                                <lightning:icon iconName="doctype:pdf" alternativeText="Image file" title="Image" />
+                                <a href="#" class="linktag">PDF File</a>
+                             </td>
+                             <td>5KB</td>
+                             <td class="download"><img src="{!$Resource.svg_DocumentCenter+ '/SVG/Download.svg'}"/></td>
+                         </tr>
+                         <tr scope="row" class="slds-border_bottom">
+                             <td>03/02/2020</td>
+                             <td>
+                                <lightning:icon iconName="doctype:word" alternativeText="Image file" title="Image" />
+                                <a href="#" class="linktag">DOC File</a>
+                             </td>
+                             <td>32KB</td>
+                             <td class="download"><img src="{!$Resource.svg_DocumentCenter+ '/SVG/Download.svg'}"/></td>
+                        </tr>
+                     </tbody>
+                </table>
+            </div>
+            
+        </div>
+        <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_3-of-12" style="margin-top: 1vw" >
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_6-of-12 slds-medium-size_6-of-12 slds-large-size_1-of-1">
+                    <c:DC_UploadDocument/>
+                </div>
+                <div class="slds-col slds-size_6-of-12 slds-medium-size_6-of-12 slds-large-size_1-of-1 tipList">
+                    <div>
+                        <p class="custom-title_text">Upload Tips</p>
+                        <ul class="slds-list_dotted">
+                          <li>All document pages should be contained in a single file.</li>
+                          <li>Scanned documents are preferred to photos.</li>
+                          <li>If you don’t have access to a scanner, we recommend downloading 
+                             <a href="#">Cam Scanner</a>, or a similar scanning app.</li>
+                        </ul>                    
+                    </div>
+                </div>
+            </div>
+       	</div>  
+    </div>
+</aura:component>

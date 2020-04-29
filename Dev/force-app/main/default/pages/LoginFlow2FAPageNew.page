@@ -1,0 +1,21 @@
+<apex:page controller="SFSPortal_DashboardMetricsController" action="{!updateUserAndRedirect}" standardStylesheets="false" showHeader="false" sidebar="false">
+    
+    <apex:slds />
+ 
+    <apex:form >
+        <apex:actionFunction name="validateCode" action="{!validateCode1}"/>
+    </apex:form>
+    
+    <script type="text/javascript">
+        var selectedValue = '';
+        function getSelectedMethod() {
+            let input = document.querySelector('input[name=validation]:checked');
+            if (input) {
+                
+                selctedValue = input.value;
+            }            
+            console.log('**** slectedValue', selctedValue);
+            sendAction(selctedValue);
+        }
+    </script>
+</apex:page>

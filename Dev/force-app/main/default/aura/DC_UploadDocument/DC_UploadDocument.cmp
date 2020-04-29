@@ -1,0 +1,75 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" controller="SFSPortal_DocumentsController" extends="c:abstractServer" access="public" >
+    <aura:attribute type="Boolean" name="showDragNdrop" default="True"/>
+    <aura:attribute name="contentDocumentList" type="List" access="public" />
+    <aura:attribute type="String" name="supportedFileTypes" default=".pdf, .jpg, .jepg, .tiff, .png, .xlsx, .doc, .docx, .csv ONLY"/>
+    <aura:attribute name="defaultValueMap" type="Map" access="public" default="{}" />
+    <aura:attribute name="myRecordId" default="0015600000NCiOz" type="String" description="Record to which the files should be attached" />
+    <!-- <aura:if isTrue="{!$Browser.formFactor != 'PHONE'}"> -->
+        <!-- style="background-color: #c0c9cb; text-align: center; position: relative;" -->
+    <div>
+        <div class="boxwrap">
+
+            <div class="dropZone">
+            <lightning:fileUpload 
+                                    aura:id="fileUpload_sendEmailFromDoc" multiple="true" name="fileUploader" 
+                                    recordId="{!v.myRecordId}" accept="{!v.supportedFileTypes}" 
+                                    onuploadfinished="{!c.handleUploadFinished}" disabled="false"
+                                    title="{!'Only ' + v.supportedFileTypes  + ' type files can be uploaded'}"/>
+            </div>
+
+            <div class="notForPhone">
+                <div class="droppableArea">
+                    <div class="slds-text-align_center"> OR </div>
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_2-of-5">
+                            <div class="slds-text-align_center slds-m-around_x-small">
+                                <img src="{!$Resource.svg_DocumentCenter+ '/SVG/DargnDrop.svg'}" />
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_3-of-5 align-center" style="padding-right: 10%; font-size: 16px">
+                            <div class="slds-text-align_left slds-m-around_x-small" ><span> Drag &amp; Drop files here directly from your computer. </span></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <aura:if isTrue="{!v.showDragNdrop}">
+                    <div class="slds-col slds-size_1-of-1 slds-m-top_x-small" style="text-align:center">
+                        <span class="custom-_text_m_dark" style="width: 7px;height: 7px;">OR</span>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1">
+                        <div class="slds-file-selector slds-file-selector_files">
+                            <div class="slds-file-selector__dropzone" style="border:none;">
+                                <input type="file" class="slds-file-selector__input slds-assistive-text" accept="image/png" id="file-upload-input-01" aria-labelledby="file-selector-primary-label file-selector-secondary-label" />
+                                <label class="slds-file-selector__body" for="file-upload-input-01" id="file-selector-secondary-label">
+                                    <div class="slds-grid">
+                                        <span class="slds-file-selector__button slds-button slds-button_neutral">
+                                            <div class="slds-col slds-size_2-of-5">
+                                                <div class="slds-text-align_center slds-m-around_x-small"  style="width:80px; height:80px;"><img src="{!$Resource.svg_DocumentCenter+ '/SVG/DargnDrop.svg'}" style="height: 100%; width: 100%;"/></div>
+                                            </div>
+                                        </span>
+                                        <span class="slds-file-selector__text slds-medium-show" style="margin-left:0px; margin-right:0px;">
+                                            <div class="slds-col slds-size_3-of-5 align-center" style="width:10rem;">
+                                                <div class="slds-text-align_center slds-m-around_x-small"><span class="custom-_text_m_dark"> Drap &amp; Drop files here directly from your computer.  </span></div>
+                                            </div>
+                                        </span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <aura:set attribute="else">
+                        <br/>
+                    </aura:set>
+                </aura:if>-->
+                <div class="acceptedFiles">
+                    <div class="slds-col slds-size_1-of-1">
+                        <span class="slds-text-align_left" style="width: 7px;height: 7px;">ACCEPTED FILE FORMATES:</span>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1">
+                        <span class="slds-text-align_left" style="width: 7px;height: 7px;">{!v.supportedFileTypes}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>

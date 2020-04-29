@@ -1,0 +1,4 @@
+<apex:page StandardController="nu_dse__Offer__c" sidebar="false" showHeader="false">
+    <apex:sectionHeader title="Offer" Subtitle="{!nu_dse__Offer__c.Account_Name__c}"></apex:sectionHeader>
+    <apex:detail relatedList="false" />
+</apex:page>

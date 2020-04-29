@@ -1,0 +1,211 @@
+.THIS * {
+    font-family: 'Noto', sans-serif;
+}
+
+.THIS .custom-title_text {
+    font-family: 'Noto Serif KR';
+    font-size: 35px !important;
+    color: #0A202D;
+    font-weight: bold;
+}
+.THIS .Icon-title {
+    font-family: 'Noto Serif KR' !important;
+    text-align: center;
+    font-size: 24px;
+    display: block;
+    font-weight: bold;
+    color: black !important;
+}
+
+.THIS .logoItems {
+    text-align: center;
+    margin-top: 55px;
+    margin-bottom: 10px;
+    padding-right: 50px;
+    padding-left: 0px;
+}
+
+.THIS .badge {
+    color: #258ca6;
+    font-family: 'Noto Serif KR', serif !important;
+}
+
+.THIS .logoItems img:first-child {
+    width: 45%;
+    padding-bottom: 15px;
+}
+
+.THIS .starIcon {
+    width: 18px !important; 
+    padding-bottom: 5px !important;
+}
+
+/* Document Listing CSS starts */
+
+.THIS a {
+    color: #258ca6;
+    font-weight: bold
+}
+
+.THIS hr {
+    margin: 0em;
+}
+
+.THIS .linktag {
+    margin-left: 10px;
+}
+
+.THIS .sidepadding {
+    padding-right: 2.5vw;
+}
+
+
+.THIS .documentTable {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 18px;
+    margin-right: 15px;
+    margin-top: 10px;
+    page-break-inside:auto;
+} 
+
+
+.THIS .download {
+    text-align: center;
+}
+
+.THIS .download img {
+    width: 30px; 
+}
+
+.THIS .fileIcon {
+    width: 30px !important;
+}
+
+.THIS .tipList{
+    background-color: #D5DEE1;
+    padding: 5%;
+    font-size: 15.5px;
+}
+
+.THIS .tipList ul {
+    margin-top: 10px;
+}
+
+.THIS .tipList li {
+    margin: 0 0 10px 0
+}
+
+.THIS .tipListModal {
+    background-color: white; 
+    font-size: 15px; 
+    padding: 10px; 
+    margin-bottom: 15px;
+}
+
+.THIS .tipListModal li {
+    margin: 3vw 0 0 0
+}
+
+.THIS .slds-table td:first-child {
+    padding-bottom: 1vw;
+    padding-top: 1vw;
+    padding-left: 7px !important;
+}
+
+.THIS .slds-table th:first-child {
+    padding-left: 7px !important;
+} 
+
+.THIS .slds-border_bottom {
+    border-color: #c0d2d5;
+}
+
+
+
+@media screen and (max-width: 420px) {
+    .THIS .custom-title_text {
+        font-size: 22px !important;
+        
+    }
+
+    .THIS .custom-title_subtext {
+        font-size: 22px !important;
+        margin-top: 25px !important;
+    }
+
+    .THIS .logoItems {
+        text-align: left;
+        margin-top: 20px;
+        margin-bottom: 0px;
+        padding-right: 20px;
+        padding-left: 0px;
+    }
+
+    .THIS .logoItems img:first-child {
+        width: 25%;
+        padding-bottom: 5px;
+        /* padding-right: 25px; */
+    }
+
+    .THIS .Icon-title {
+        display: inline;
+        padding-left: 20px;
+    }
+    
+    .THIS .documentTable {
+        font-size: 14px !important; 
+    }
+
+}
+
+@media screen and (max-width: 1020px) {  
+    .THIS .logoItems img:first-child {
+        width: 60%;
+    }
+    
+    .THIS .documentTable {
+        font-size: 80%; 
+    }
+    
+	.THIS .slds-table td  {
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+    
+    .THIS .slds-table td img  {
+        width: 125%;
+    }
+    
+    .THIS .slds-table tr td {
+ 		white-space: pre-wrap
+    }
+    
+    .THIS .download img {
+    	height: 30px;
+	}
+    
+    .THIS .tipList{
+        background-color: #dedfdf;
+        padding: 10px;
+        height: 296px;
+    }
+        
+    .THIS .sidepadding {
+        padding: 0px;
+    }
+    
+   .THIS .Icon-title {
+        font-size: 16.5px;
+    }
+}
+
+@media screen and (min-width: 1550px) { 
+    .THIS .docCenter {
+        zoom: 120%;
+        -moz-transform: scale(1.2);
+    }
+
+}
+
+
+/* Document Listing CSS ends */

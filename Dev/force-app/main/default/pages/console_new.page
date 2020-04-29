@@ -1,0 +1,28 @@
+<apex:page standardController="nu_dse__Program__c">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                <apex:tabPanel >
+                    <apex:tab label="Details" >
+                        <apex:detail relatedList="false" />
+                    </apex:tab>
+                    <apex:tab label="Group Tasks" >
+                       
+                    </apex:tab>
+                    <apex:tab label="Tasks">
+                        
+                    </apex:tab>
+                    <apex:tab label="Events">
+                        
+                    </apex:tab>
+                    <apex:tab label="Notes">
+                        
+                    </apex:tab>
+                    <apex:tab label="Attorney Notes">
+                        
+                    </apex:tab>
+                </apex:tabPanel>
+            </apex:pageBlockSection>
+        </apex:pageBlock>   
+    </apex:form>        
+</apex:page>

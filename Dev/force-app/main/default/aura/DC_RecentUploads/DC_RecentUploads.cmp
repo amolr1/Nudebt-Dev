@@ -1,0 +1,57 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" access="global" >
+<aura:attribute type="Boolean" name="showLandingPage" default="true" Description="Used to render Listing UI" />
+ <aura:attribute name="recentUploadsList" type="List" />
+<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div>
+    <p class="custom-title_subtext">Recent Uploads</p>
+    <hr color="#b2b2b2" noshade="noshade"/>
+    <table class="slds-table slds-table_cell-buffer documentTable">
+        <aura:if isTrue="{!v.recentUploadsList.length > 0}">
+        <thead>
+            <tr class="slds-border_bottom">
+                <th class="col" style="width: 20%">Date</th>
+                <th class="col" style="width: 45%">Title</th>
+                <th class="col" style="width: 15%">Size</th>
+                <aura:if isTrue="{!$Browser.formFactor != 'PHONE'}">
+                <th class="col" style="width: 20%; text-align: center">Download</th>
+                </aura:if>
+            </tr>
+        </thead>
+        <tbody>
+			<aura:iteration items="{!v.recentUploadsList}" var="entityRow">
+				<tr scope="row" class="slds-border_bottom">
+					<td><ui:outputDate aura:id="modified_atID" value="{!entityRow.modified_at}" format="MM/dd/yyyy"/></td>
+					<td>
+						<aura:if isTrue="{!or(entityRow.extension == 'png', entityRow.extension == 'jpg' , entityRow.extension == 'jpeg', entityRow.extension == 'tiff')}">
+							<lightning:icon iconName="doctype:image" alternativeText="Image file" title="{!entityRow.name}" />
+						</aura:if>
+						<aura:if isTrue="{!or(entityRow.extension == 'xlx', entityRow.extension == 'xlsx' , entityRow.extension == 'doc', entityRow.extension == 'docx', entityRow.extension == 'csv')}">
+							<lightning:icon iconName="doctype:word" alternativeText="Image file" title="{!entityRow.name}" />
+						</aura:if>
+						<aura:if isTrue="{!entityRow.extension == 'pdf'}">
+							<lightning:icon iconName="doctype:pdf" alternativeText="Image file" title="{!entityRow.name}" />
+						</aura:if>
+						<a href="#" class="linktag">{!entityRow.name}</a>
+					</td>
+					<td>
+						<aura:if istrue="{!entityRow.size > 125000 ? 'true' : 'false'}">
+							<lightning:formattedNumber value="{!entityRow.size / 125000}" maximumFractionDigits="0"/>MB
+							<aura:set attribute="else">
+								<lightning:formattedNumber value="{!entityRow.size / 1000}" maximumFractionDigits="0"/>KB
+							</aura:set>
+						</aura:if>
+					</td>
+					<aura:if isTrue="{!$Browser.formFactor != 'PHONE'}">
+					<td class="download"><a onclick="{}"><img src="{!$Resource.svg_DocumentCenter+ '/SVG/Download.svg'}" /></a>
+					</td>
+					</aura:if>
+				</tr>
+            </aura:iteration>
+        </tbody>
+        <aura:set attribute="else">
+            <center><h1> There is no files in recent uploads !</h1></center>
+        </aura:set>
+    </aura:if>
+    </table>
+</div>
+</aura:component>
